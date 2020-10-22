@@ -41,5 +41,5 @@ Item inventory Data: When the user purchases an item, the item earned will be st
 # 7. File input/output (e.g., for loading/saving game status)
 The user can create their own profile. The game will save the game progress to a file according to the user’s name. When the user wishes to save and exit, and when re-entering the game, by typing the same name the user can continue from the previous end section. 
  
-# Program codes in multiple files
+# 8. Program codes in multiple files
 Each stage, item store will be generated in different files.
