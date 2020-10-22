@@ -1,7 +1,7 @@
 PTT_Groupproject
 ================
 
-Contributor : Junyoung Bae, Heemin Kang(3035343231)
+Contributor : Junyoung Bae(3035716464), Heemin Kang(3035343231)
 --
 ---------------------------------------------------
 
@@ -34,11 +34,9 @@ An option of every item will be randomly selected.
 # 5. Data structures for storing game status
 Individual users’ profiles will be created. To distinguish each user, the user will input the name and age data of the file.
  
- 
 # 6. Dynamic memory management
 HP Data: Before the start of the game, an integer value for the monster’s and the user’s HP will be set. After each stage the monster’s or the user’s HP will be deducted by the amount of damage. 
 Item inventory Data: When the user purchases an item, the item earned will be stored in the item inventory data. When the user uses an item, the used item will be deleted from the inventory
- 
  
 # 7. File input/output (e.g., for loading/saving game status)
 The user can create their own profile. The game will save the game progress to a file according to the user’s name. When the user wishes to save and exit, and when re-entering the game, by typing the same name the user can continue from the previous end section. 
