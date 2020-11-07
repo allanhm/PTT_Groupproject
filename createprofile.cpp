@@ -6,6 +6,7 @@
 using namespace std;
 
 string createprofile() {
+    bool new_game = start();
     string name_;
     while (new_game == 1) {
         cout << "Create new profile" << endl;
