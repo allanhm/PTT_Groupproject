@@ -3,7 +3,7 @@
 #ifndef createprofile
 #define createprofile
 
-string createprofile()
+string createprofile();
 
 #endif
 
