@@ -5,7 +5,7 @@
 #include "createprofile.h"
 using namespace std;
 
-void createprofile() {
+string createprofile() {
     bool new_game = start();
     string name_;
     while (new_game == 1) {
