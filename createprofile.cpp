@@ -5,7 +5,7 @@
 #include "createprofile.h"
 using namespace std;
 
-string createprofile() {
+void createprofile() {
     bool new_game = start();
     string name_;
     while (new_game == 1) {
@@ -21,7 +21,6 @@ string createprofile() {
             ofstream write;
             write.open(name_.c_str());
             /// 게임 스타트?
-            return name_;
         }
     }
 
@@ -37,8 +36,6 @@ string createprofile() {
         else {
             cout << "Welcome back" << endl;
             read.close();
-            return name_;
-
         }
     }
 
