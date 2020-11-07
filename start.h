@@ -3,7 +3,7 @@
 #ifndef start
 #define start
 
-bool start()
+bool start();
 
 #endif
 
