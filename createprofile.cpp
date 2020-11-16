@@ -13,15 +13,18 @@ bool profile_creation(int button, Players &user) {
             case 1:
                 while(true){
                     cout << "Create new profile" << endl;
-                    cout << "Enter your name: " << endl;
+                    cout << "Enter your name: ";
                     cin >> name_;
+                    user.playername_v = name_;
                     name_ += ".txt"; // input the character name
                     ifstream file(name_); //check if the file with the same name exists
                     if (file) {
                         cout << "Name already exists. Please enter a different name." << endl;
                         }
                     else {
-                        file.open(name_);
+                        ofstream write(name_);
+                        write.close();
+                        cout << "Welcome to Deck Dungeon!";
                         check = false;
                         break;
                     }
@@ -33,7 +36,7 @@ bool profile_creation(int button, Players &user) {
                     cin >> name_;
                     name_ += ".txt";
                     ifstream read;
-                    read.open(name_);
+                    read.open(name_.c_str());
                     if (read.fail()) {
                         cout << "Your name does not exist. Type your name again" << endl;
                     }

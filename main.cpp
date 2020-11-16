@@ -20,6 +20,7 @@ int main(){
         cout << " 1. Create Profile" << endl;
         cout << " 2. Load Profile " << endl;
         cout << " 3. Exit" << endl;
+        cout << "Your Option: " ;
         cin >> game_option;
         if (game_option < 1 || game_option > 3){
             cout << " Wrong option ! Please press other keys"<<endl;
