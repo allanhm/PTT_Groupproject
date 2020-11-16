@@ -2,8 +2,8 @@
 
 #ifndef createprofile
 #define createprofile
+using namespace std;
 
-string createprofile();
+string profile_creation(int button);
 
 #endif
-
