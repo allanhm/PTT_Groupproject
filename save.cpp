@@ -6,7 +6,7 @@
 #include "characterinfo.h"
 #include "createprofile.h"
 using namespace std;
-void save_f() {
+void save_f(Players &users) {
     ofstream write;
     write.open(name_);
     write << playerhp_v << endl;
