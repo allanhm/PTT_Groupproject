@@ -5,7 +5,7 @@
 #include "characterinfo.h"
 using namespace std;
 
-string profile_creation(int button, Players &user) {
+void profile_creation(int button, Players &user) {
     string name_;
     bool check = true;
     while (check){

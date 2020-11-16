@@ -6,8 +6,8 @@
 #define GROUP_80_CHARACTERINFO_H
 
 struct Players{
-    std::string plyaername_v;
-    int plyaerhp_v;
+    std::string playername_v;
+    int playerhp_v;
     int playerlevel_v;
     int playerattack_v;
     int plyaerdefense_v;
