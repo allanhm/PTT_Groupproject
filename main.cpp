@@ -34,10 +34,20 @@ int main(){
 
 
     }
-    cout << "Round 1 "<< endl;
-    Monster enemy;
-    MonsterCreation_f(enemy,1);
-    cout << enemy.monstername_v << " appeared!";
+
+    char saveindex;
+    for(; user.playerround_v < 4; user.playerround_v++){
+        cout << "Do you want to Save & Quit? (Y/N)";
+        cin >> saveindex;
+        //save & quit function
+        cout << "Round"<< user.playerround_v <<  endl;
+        Monster enemy;
+        MonsterCreation_f(enemy,1);
+        cout << enemy.monstername_v << " appeared!";
+        //
+
+    }
+
 
 
 

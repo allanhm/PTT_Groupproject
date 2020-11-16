@@ -25,7 +25,6 @@ bool profile_creation(int button, Players &user) {
                         }
                     else {
                         ofstream write(name_); // make a new file if the character name is not exist
-                        // save before starting game (게이머 정보만)
                         write.close();
                         cout << "Welcome to Deck Dungeon!";
                         check = false;
