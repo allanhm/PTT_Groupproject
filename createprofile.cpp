@@ -3,6 +3,8 @@
 #include <string>
 #include "createprofile.h"
 #include "characterinfo.h"
+#include "load_f.h"
+
 using namespace std;
 
 bool profile_creation(int button, Players &user) {
@@ -42,6 +44,7 @@ bool profile_creation(int button, Players &user) {
                     }
                     else { // if the program find it it will load the file
                         // Load 함수 삽입 (header랑 같이)
+                        load_f(Players &users);
                         cout << "Welcome back" << endl;
                         read.close();
                         check = false;
