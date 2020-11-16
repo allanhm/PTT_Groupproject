@@ -5,17 +5,20 @@
 
 #include "characterinfo.h"
 using namespace std;
-void load_f() {
+void load_f(Players users) {
     ifstream fin;
     fin.open("save.txt");
-    fin >> Player.plyaername_v;
-    fin >> Player.plyaerhp_v;
-    fin >> Player.playerlevel_v;
-    fin >> Player.playerattack_v;
-    fin >> Player.plyaerdefense_v;
-    fin >> Player.plyaercard_v[3];
-    fin >> Player.equipment_v[3];
+    fin >> users.plyaername_v;
+    fin >> users.plyaerhp_v;
+    fin >> users.playerlevel_v;
+    fin >> users.playerattack_v;
+    fin >> users.plyaerdefense_v;
+    for(int i = 0 ; i < 3 ; i++) {
+        fin >> users.plyaercard_v[3];
+    }
+    for(int i = 0 ; i < 3 ; i++) {
+        fin >> users.equipment_v[3];
+    }
     fin.close();
 }
-    
 
