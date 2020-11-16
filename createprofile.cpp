@@ -4,13 +4,13 @@
 #include "createprofile.h"
 using namespace std;
 
-string profile_creation(int button) {
+string profile_creation(int button, Plyaer &user) {
     string name_;
     bool check = true;
     while (check){
         switch(button){
             case 1:
-                while( true){
+                while(true){
                     cout << "Create new profile" << endl;
                     cout << "Enter your name: " << endl;
                     cin >> name_;
