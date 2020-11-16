@@ -13,10 +13,10 @@ void load_f(Players users) {
     fin >> users.playerattack_v;
     fin >> users.plyaerdefense_v;
     for(int i = 0 ; i < 3 ; i++) {
-        fin >> users.plyaercard_v[3];
+        fin >> users.plyaercard_v[i];
     }
     for(int i = 0 ; i < 3 ; i++) {
-        fin >> users.equipment_v[3];
+        fin >> users.equipment_v[i];
     }
     fin.close();
 }
