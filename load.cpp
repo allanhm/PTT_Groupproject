@@ -13,6 +13,7 @@ void load_f(Players users) {
     fin >> users.playerlevel_v;
     fin >> users.playerattack_v;
     fin >> users.playerdefense_v;
+    fin >> users.playerround_v;
     for(int i = 0 ; i < 3 ; i++) {
         fin >> users.playercard_v[i];
     }
