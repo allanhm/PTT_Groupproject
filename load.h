@@ -1,6 +1,6 @@
-#ifndef load_f.h
-#define load_f
-#include "load_f.h"
+#ifndef load
+#define load
+#include "characterinfo.h"
 
 void load_f(Players &users);
 

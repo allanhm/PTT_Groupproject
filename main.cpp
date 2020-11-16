@@ -6,6 +6,7 @@
 #include <string>
 #include "createprofile.h"
 #include "characterinfo.h"
+#include "MonsterCreation.h"
 using namespace std;
 
 
@@ -25,13 +26,19 @@ int main(){
         if (game_option < 1 || game_option > 3){
             cout << " Wrong option ! Please press other keys"<<endl;
         }
-        if (profile_creation(game_option, user) == false ){
-            break;
+        else{
+            if (!profile_creation(game_option, user)){
+                break;
+            }
         }
 
+
     }
+    cout << "Round 1 "<< endl;
     Monster enemy;
-    // createmonster_f( Monster &monster);
+    MonsterCreation_f(enemy,1);
+    cout << enemy.monstername_v << " appeared!";
+
 
 
 

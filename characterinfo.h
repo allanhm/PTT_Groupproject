@@ -13,16 +13,16 @@ struct Players{ //Default value when new characgter is made
     int playerdefense_v = 3;
     int playercard_v[3] = {0};
     int playerequipment_v[3] = {0};
-    int playerround = 1;
+    int playerround_v = 1;
 
 };
 
 
 struct Monster{
-    std::string monstername;
+    std::string monstername_v;
     int monsterhp_v;
     int monsterattack_v;
     int monsterdefense_v;
-    int monstercard[3];
+    int monstercard_v[3];
 };
 #endif //GROUP_80_CHARACTERINFO_H

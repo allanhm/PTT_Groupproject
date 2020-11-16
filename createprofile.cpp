@@ -3,7 +3,7 @@
 #include <string>
 #include "createprofile.h"
 #include "characterinfo.h"
-#include "load_f.h"
+#include "load.h"
 
 using namespace std;
 
@@ -36,6 +36,7 @@ bool profile_creation(int button, Players &user) {
                 while (true) {
                     cout << "Enter your name: " << endl;
                     cin >> name_;
+                    string users = name_;
                     name_ += ".txt";
                     ifstream read; // to check its existence
                     read.open(name_);
@@ -44,7 +45,7 @@ bool profile_creation(int button, Players &user) {
                     }
                     else { // if the program find it it will load the file
                         // Load 함수 삽입 (header랑 같이)
-                        load_f(Players &users);
+                        load_f(user);
                         cout << "Welcome back" << endl;
                         read.close();
                         check = false;
@@ -56,10 +57,6 @@ bool profile_creation(int button, Players &user) {
                 cout << "Bye Bye!" <<endl;
                 cout << "The game is terminated";
                 exit(1);
-                break;
-            default:
-                cout << "Unavailabe option! Please choose again";
-                break;
 
         }
         }

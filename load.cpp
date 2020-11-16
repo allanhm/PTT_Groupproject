@@ -4,7 +4,7 @@
 #include "characterinfo.h"
 
 using namespace std;
-void load_f(Players users) {
+void load_f(Players &users) {
     ifstream fin;
     users.playername_v += ".txt";
     fin.open(users.playername_v);
@@ -18,7 +18,7 @@ void load_f(Players users) {
         fin >> users.playercard_v[i];
     }
     for(int i = 0 ; i < 3 ; i++) {
-        fin >> users.equipment_v[i];
+        fin >> users.playerequipment_v[i];
     }
     fin.close();
 }
