@@ -30,6 +30,8 @@ int main(){
         }
 
     }
+    Monster enemy;
+    // createmonster_f( Monster &monster);
 
 
 
