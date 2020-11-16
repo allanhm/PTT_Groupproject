@@ -11,7 +11,7 @@ using namespace std;
 
 int main(){
     int game_option;
-    Plyaers user;
+    Players user;
     cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl;
     cout << "                  Deck Dungeon        " << endl;
 
