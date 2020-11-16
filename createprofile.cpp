@@ -2,9 +2,10 @@
 #include <fstream>
 #include <string>
 #include "createprofile.h"
+#include "characterinfo.h"
 using namespace std;
 
-string profile_creation(int button, Plyaer &user) {
+string profile_creation(int button, Plyaers &user) {
     string name_;
     bool check = true;
     while (check){
