@@ -18,11 +18,11 @@ bool profile_creation(int button, Players &user) {
                     user.playername_v = name_;
                     name_ += ".txt"; // input the character name
                     ifstream file(name_); //check if the file with the same name exists
-                    if (file) {
+                    if (file) { //if so iterate again
                         cout << "Name already exists. Please enter a different name." << endl;
                         }
                     else {
-                        ofstream write(name_);
+                        ofstream write(name_); // make a new file if the character name is not exist
                         write.close();
                         cout << "Welcome to Deck Dungeon!";
                         check = false;
@@ -30,17 +30,18 @@ bool profile_creation(int button, Players &user) {
                     }
                 }
                 break;
-            case 2:
+            case 2: // Load the file
                 while (true) {
                     cout << "Enter your name: " << endl;
                     cin >> name_;
                     name_ += ".txt";
-                    ifstream read;
-                    read.open(name_.c_str());
-                    if (read.fail()) {
+                    ifstream read; // to check its existence
+                    read.open(name_);
+                    if (read.fail()) { // if one cannot find it ask to type again
                         cout << "Your name does not exist. Type your name again" << endl;
                     }
-                    else {
+                    else { // if the program find it it will load the file
+                        // Load 함수 삽입 (header랑 같이)
                         cout << "Welcome back" << endl;
                         read.close();
                         check = false;
