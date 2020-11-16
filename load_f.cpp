@@ -20,5 +20,4 @@ void load_f(Players users) {
     }
     fin.close();
 }
-    
 
