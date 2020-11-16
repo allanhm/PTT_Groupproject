@@ -21,12 +21,15 @@ int main(){
         cout << " 2. Load Profile " << endl;
         cout << " 3. Exit" << endl;
         cin >> game_option;
-        if (game_option < 1 && game_option > 3){
+        if (game_option < 1 || game_option > 3){
             cout << " Wrong option ! Please press other keys"<<endl;
         }
-        profile_creation(game_option, user);
+        if (profile_creation(game_option, user) == false ){
+            break;
+        }
 
     }
+
 
 
 

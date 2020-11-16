@@ -10,8 +10,8 @@ struct Players{
     int playerhp_v;
     int playerlevel_v;
     int playerattack_v;
-    int plyaerdefense_v;
-    int plyaercard_v[3];
+    int playerdefense_v;
+    int plaYercard_v[3];
     int equipment_v[3];
 
 };
