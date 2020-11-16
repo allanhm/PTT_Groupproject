@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 #include "characterinfo.h"
-#include
 
 using namespace std;
 void load_f(Players users) {
