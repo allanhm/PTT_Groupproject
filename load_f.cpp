@@ -6,14 +6,15 @@
 using namespace std;
 void load_f(Players users) {
     ifstream fin;
-    fin.open("save.txt");
-    fin >> users.plyaername_v;
-    fin >> users.plyaerhp_v;
+    users.playername_v += ".txt";
+    fin.open(users.playername_v);
+    fin >> users.playername_v;
+    fin >> users.playerhp_v;
     fin >> users.playerlevel_v;
     fin >> users.playerattack_v;
-    fin >> users.plyaerdefense_v;
+    fin >> users.playerdefense_v;
     for(int i = 0 ; i < 3 ; i++) {
-        fin >> users.plyaercard_v[i];
+        fin >> users.playercard_v[i];
     }
     for(int i = 0 ; i < 3 ; i++) {
         fin >> users.equipment_v[i];
