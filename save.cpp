@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "characterinfo.h"
+#include "createprofile.h"
 using namespace std;
 void save_f() {
     ofstream write;
