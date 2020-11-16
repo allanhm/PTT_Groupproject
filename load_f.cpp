@@ -15,6 +15,7 @@ void load_f() {
     fin >> Player.plyaerdefense_v;
     fin >> Player.plyaercard_v[3];
     fin >> Player.equipment_v[3];
+    fin.close();
 }
     
 
