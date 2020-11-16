@@ -25,6 +25,7 @@ bool profile_creation(int button, Players &user) {
                         }
                     else {
                         ofstream write(name_); // make a new file if the character name is not exist
+                        // save before starting game (게이머 정보만)
                         write.close();
                         cout << "Welcome to Deck Dungeon!";
                         check = false;
@@ -44,7 +45,6 @@ bool profile_creation(int button, Players &user) {
                         cout << "Your name does not exist. Type your name again" << endl;
                     }
                     else { // if the program find it it will load the file
-                        // Load 함수 삽입 (header랑 같이)
                         load_f(user);
                         cout << "Welcome back" << endl;
                         read.close();
