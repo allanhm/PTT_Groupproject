@@ -1,27 +1,33 @@
 #include <iostream>
-#include <stdio.h>
 #include <string>
 #include <fstream>
 
 #include "characterinfo.h"
 #include "createprofile.h"
 using namespace std;
-void save_f(Players &users) {
+void save_f(Players &user) {
     ofstream write;
-    write.open(name_);
-    write << playerhp_v << endl;
-    write << playerattack_v << endl;
-    write << playerdefense_v << endl;
+    string filename = user.playername_v + ".txt";
+    write.open(filename);
+    write << user.playerhp_v << endl;
+    write << user.playerattack_v << endl;
+    write << user.playerdefense_v << endl;
     for(int i = 0 ; i < 3 ; i++) {
-            write << users.playercard_v[i];
+            write << user.playercard_v[i];
+            if (i== 2){
+                write <<endl;
+            }
         }
+
     for(int i = 0 ; i < 3 ; i++) {
-            write << users.playerequipment_v[i];
+            write << user.playerequipment_v[i];
+            if (i == 2){
+                write << endl;
+            }
         }
-    
-    write << playerround_v << endl;
+    write << user.playerround_v << endl;
     
     write.close();
-    
-    exit(1)
+    cout << "Save successfully complete! Bye Bye!" << endl;
+    exit(1);
 }

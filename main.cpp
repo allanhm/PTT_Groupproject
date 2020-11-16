@@ -7,6 +7,7 @@
 #include "createprofile.h"
 #include "characterinfo.h"
 #include "MonsterCreation.h"
+#include "save.h"
 using namespace std;
 
 
@@ -39,7 +40,12 @@ int main(){
     for(; user.playerround_v < 4; user.playerround_v++){
         cout << "Do you want to Save & Quit? (Y/N)";
         cin >> saveindex;
-        //save & quit function
+        if(saveindex == 'Y'|| saveindex == 'y'){
+            save_f(user);
+        }
+        else{
+            cout << "Game goes on..";
+        }
         cout << "Round"<< user.playerround_v <<  endl;
         Monster enemy;
         MonsterCreation_f(enemy,1);

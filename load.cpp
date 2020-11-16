@@ -4,21 +4,21 @@
 #include "characterinfo.h"
 
 using namespace std;
-void load_f(Players &users) {
+void load_f(Players &user) {
     ifstream fin;
-    users.playername_v += ".txt";
-    fin.open(users.playername_v);
-    fin >> users.playername_v;
-    fin >> users.playerhp_v;
-    fin >> users.playerlevel_v;
-    fin >> users.playerattack_v;
-    fin >> users.playerdefense_v;
-    fin >> users.playerround_v;
+    user.playername_v += ".txt";
+    fin.open(user.playername_v);
+    fin >> user.playername_v;
+    fin >> user.playerhp_v;
+    fin >> user.playerlevel_v;
+    fin >> user.playerattack_v;
+    fin >> user.playerdefense_v;
+    fin >> user.playerround_v;
     for(int i = 0 ; i < 3 ; i++) {
-        fin >> users.playercard_v[i];
+        fin >> user.playercard_v[i];
     }
     for(int i = 0 ; i < 3 ; i++) {
-        fin >> users.playerequipment_v[i];
+        fin >> user.playerequipment_v[i];
     }
     fin.close();
 }
