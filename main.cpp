@@ -8,6 +8,7 @@
 #include "characterinfo.h"
 #include "MonsterCreation.h"
 #include "save.h"
+#include "Battle.h"
 using namespace std;
 
 
@@ -27,6 +28,7 @@ int main(){
         if (game_option < 1 || game_option > 3){
             cout << " Wrong option ! Please press other keys"<<endl;
         }
+
         else{
             if (!profile_creation(game_option, user)){
                 break;
@@ -35,9 +37,10 @@ int main(){
 
 
     }
-
+    Monster enemy;
     char saveindex;
     for(; user.playerround_v < 4; user.playerround_v++){
+        int round = user.playerround_v;
         cout << "Do you want to Save & Quit? (Y/N)";
         cin >> saveindex;
         if(saveindex == 'Y'|| saveindex == 'y'){
@@ -46,14 +49,15 @@ int main(){
         else{
             cout << "Game goes on..";
         }
-        int  playerdeck[21] = {1};
+        int playerdeck[21] = {1};
         int monsterdeck[21] = {1};
-        cout << "Round"<< user.playerround_v <<  endl;
-        Monster enemy;
-        MonsterCreation_f(enemy,1);
-        cout << enemy.monstername_v << " appeared!";
 
-        Battle_f(user, enemy, round)
+        cout << "Round"<< user.playerround_v <<  endl;
+        MonsterCreation_f(enemy,round);
+        cout << enemy.monstername_v << " appeared!";
+        Battle_f(user, enemy,round,playerdeck,monsterdeck){
+
+        }
 
     }
 

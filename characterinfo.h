@@ -11,7 +11,7 @@ struct Players{ //Default value when new characgter is made
     int playerattack_v = 7;
     int playerdefense_v = 3;
     int playercard_v[3] = {0};
-    int playerequipment_v[3] = {0};
+    vector<int>playerequipment_v;
     int playerround_v = 1;
 
 };

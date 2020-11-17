@@ -21,7 +21,6 @@ void PlayerCardDraw_f(Players &user, int i){
                 break;
             }
         }
-        playerdeck[user.playercard_v[i]] = 0;
     }
 }
 
