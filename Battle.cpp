@@ -65,7 +65,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
     cout << enemy.monstername_v << "'s card is" << enemy.monstercard_v[z] << endl;
 
-    if (userselectedcard_v > enemy.monstercard_v[z]) {
+    if (userselectedcard_v > enemy.monstercard_v[z]) { //user wins
         cout << "You won!" << endl;
         cout << user.playerattack_v << " damange to the monster!" << endl;
         enemy.monsterhp_v= enemy.monsterhp_v - user.playerattack_v + enemy.monsterdefense_v;
@@ -76,7 +76,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         
     }
     
-    if (userselectedcard_v <= enemy.monstercard_v[z]) {
+    if (userselectedcard_v <= enemy.monstercard_v[z]) { // monster wins
         cout << "You lost!" << endl;
         cout << enemy.monsterattack_v << " damange to you!" << endl;
         user.playerhp_v = user.playerhp_v - enemy.monsterattack_v + enemy.monsterdefense_v;
@@ -86,7 +86,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         cout << "Defense: " << user.playerdefense_v << endl;
     }
     
-    for(int i = 0 ; i < 3 ; i++) { // take away the user's card
+    for(int i = 0 ; i < 3 ; i++) { // take away the monster's card
         if (enemy.monstercard_v[i] == enemy.monstercard_v[z])
             enemy.monstercard_v[i] = 0;
     }
