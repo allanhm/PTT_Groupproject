@@ -21,8 +21,6 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
     CardDraw_f(user.playercard_v,userdeck); // player draws 3 cards
     CardDraw_f(enemy.monstercard_v,monsterdeck); //monster draw 3 cards
-    //Sort_f(user.playercard_v); // sort the player's card
-    //Sort_f(enemy.monstercard_v); // sort the monster's card
 
     cout << user.playername_v << " drew 3 cards" << endl; // display player's card
     for(int i = 0 ; i < 3 ; i++) {
@@ -104,8 +102,10 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         }
         Sort_f(user.playercard_v); // sort the player's card
         Sort_f(enemy.monstercard_v); // sort the monster's card
-        Redraw_f(user.playercard_v,userdeck);
-        Redraw_f(enemy.monstercard_v,monsterdeck);
+        Redraw_f(user.playercard_v, userdeck);
+        Redraw_f(enemy.monstercard_v, monsterdeck);
+
+
         // if card num = 0, comapre cout << you win or loose keepfight false ( Card is 0)
         int numof0_v=0;
         for (int i = 0; i < 20; i++) {
@@ -135,17 +135,16 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){
     minstd_rand gen(rd());
     uniform_int_distribution<int> dis(1,20);
 
-    int i = 0, j = 0, max =3;
-    int i_v, compare_i_v;
-    for (i_v = 0 ; i_v < max; i_v ++){
-        usercardhands[i_v] = dis(gen); // randomly assign the card
-        for(compare_i_v = 0; compare_i_v < i_v; compare_i_v++){
-            if (usercardhands[i_v] == playerdeck[compare_i_v]){ // if there is a same card re_draw;
-                i_v--;
+    int i = 0, max =3;
+    for (;i < max; i++){
+        usercardhands[i] =dis(gen); //13 12
+        for(int j = 0;j<i;j++){
+            if (usercardhands[i] == usercardhands[j]){
+                i--;
                 break;
             }
+            playerdeck[usercardhands[i]] = 0;
         }
-        playerdeck[usercardhands[i_v]] = 0;
     }
 }
 
@@ -161,27 +160,26 @@ void StatusAfterB_f(Players user, Monster mon){
 
 }
 
-void Redraw_f(int hands[], int deck[]){
+void Redraw_f(int why[], int check[]) {
     random_device rd; //random_device for seed value
     minstd_rand gen(rd());
-    uniform_int_distribution<int> dis(1,20);
+    uniform_int_distribution<int> dis(1, 20);
+    bool isoverlapped = true;
 
-    int compare_i_v, redraw;
-    int index = 0;
-
-    while(index < 3){
-        redraw= dis(gen); // randomly assign the card
-        for(compare_i_v = 1; compare_i_v < 3; compare_i_v++){
-            if (hands[compare_i_v] != redraw) index++;
-        }
-        if(index == 3){
-            hands[0] = redraw;
-            deck[redraw] = 0;
+    while (isoverlapped) {
+        int redraw = dis(gen);
+        int i = 1;
+        if (check[redraw] == i) {
+            why[0] = redraw;
+            check[redraw] = 0;
+            isoverlapped = false;
         }
     }
+
 }
+
 void Sort_f(int hands[]){
-    int i = 0, j = 0, temp = 0;
+    int i , j, temp;
     for(i=0;i<3;i++)
     {
         for(j=i+1;j<3;j++)
