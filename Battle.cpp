@@ -12,30 +12,39 @@ using namespace std;
 void CardDraw_f(int usercardhands[], int playerdeck[]);
 
 void Redraw_f(int hands[], int deck[]);
+
+void Sort_f(int hands[]);
 void StatusAfterB_f(Players user, Monster mon);
 
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
     cout << "Welcome to round: " << user.playerround_v << endl; // round notification
 
     CardDraw_f(user.playercard_v,userdeck); // player draws 3 cards
-    cout << enemy.monstername_v << " drew 3 cards"<< endl;
-    cout << user.playername_v << "'s card: "; // user's card
+    CardDraw_f(enemy.monstercard_v,monsterdeck); //monster draw 3 cards
+    //Sort_f(user.playercard_v); // sort the player's card
+    //Sort_f(enemy.monstercard_v); // sort the monster's card
+
+    cout << user.playername_v << " drew 3 cards" << endl; // display player's card
     for(int i = 0 ; i < 3 ; i++) {
         cout << user.playercard_v[i] << ' ';
     }
+    cout << endl;
 
-    cout << enemy.monstername_v << " drew 3 cards" << endl;
-    cout << enemy.monstername_v << "'s card: " << "? ? ?" << endl; // monster's card unknown.
-    CardDraw_f(enemy.monstercard_v,monsterdeck); //monster draw 3 cards
+    cout << enemy.monstername_v << " drew 3 cards"<< endl; // display monser's card
     for(int i = 0 ; i < 3 ; i++) {
         cout << enemy.monstercard_v[i] << ' ';
     }
-    cout << "\n";
+    cout << endl;
+
 
     bool keepfight_v = true;
     while(keepfight_v) {
         cout << "Attack Phase" << endl;
-
+        cout << "remaining cards: ";
+        for(int i = 0 ; i < 3 ; i++) {
+            cout << user.playercard_v[i] << ' ';
+        }
+        cout << endl;
         cout << user.playername_v << " please select a card to attack: ";
         int userselectedcard_v = 0;
         bool isonhands = false;
@@ -54,39 +63,71 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             }
         }
         cout << enemy.monstername_v << " has selected a card!" << endl;
-        int n = sizeof(enemy.monstercard_v) / sizeof(enemy.monstercard_v[0]);
-        sort(enemy.monstercard_v, enemy.monstercard_v + n); //sorting in ascending order.
-        int z = rand() % 2 + 1;
+
         cout << enemy.monstercard_v[0] << " " << enemy.monstercard_v[1] << " " << enemy.monstercard_v[2] << endl;
 
-        cout << enemy.monstername_v << "'s card is" << enemy.monstercard_v[z] << endl;
 
 
-
-        // --------------------Comparing damage
-        if (userselectedcard_v > enemy.monstercard_v[z]) { //user wins
-            cout << "You won!" << endl;
-            cout << user.playerattack_v << " damange to the monster!" << endl;
-            enemy.monsterhp_v = enemy.monsterhp_v - user.playerattack_v + enemy.monsterdefense_v;
+        int z = rand() % 2 + 1; // random pick from monster
+        int monster_card_v = enemy.monstercard_v[z];
+        cout << enemy.monstername_v << "'s card is" << monster_card_v << endl;
+        for (int i = 0; i < 3; i++) { // take away the monster's card
+            if (enemy.monstercard_v[i] == monster_card_v)
+                enemy.monstercard_v[i] = 0;
         }
 
-        if (userselectedcard_v <= enemy.monstercard_v[z]) { // monster wins
+        int damage;
+        // --------------------Comparing damage
+        if (userselectedcard_v > monster_card_v) { //user wins
+            cout << "You won!" << endl;
+            damage = userselectedcard_v - enemy.monsterdefense_v;
+            cout << damage << " damange to the monster!" << endl;
+            enemy.monsterhp_v -= damage;
+        }
+
+        if (userselectedcard_v <= monster_card_v) { // monster wins
             cout << "You lost!" << endl;
-            cout << enemy.monsterattack_v << " damange to you!" << endl;
-            user.playerhp_v = user.playerhp_v - enemy.monsterattack_v + enemy.monsterdefense_v;
+            damage = monster_card_v - user.playerdefense_v;
+            cout << damage << " damange to you!" << endl;
+            user.playerhp_v -= damage;
         }
         StatusAfterB_f(user, enemy);
 
         // if either of the chcarters is down (which is hp < 0) cout << You or Monster loose keepfight => false
+        if (user.playerhp_v <= 0) {
+            cout << "You lost!" << endl;
+            keepfight_v = false;
+        }
+        else if(enemy.monsterhp_v <= 0){
+            cout << "You won!" << endl;
+            keepfight_v = false;
+        }
+        Sort_f(user.playercard_v); // sort the player's card
+        Sort_f(enemy.monstercard_v); // sort the monster's card
+        Redraw_f(user.playercard_v,userdeck);
+        Redraw_f(enemy.monstercard_v,monsterdeck);
+        // if card num = 0, comapre cout << you win or loose keepfight false ( Card is 0)
+        int numof0_v=0;
+        for (int i = 0; i < 20; i++) {
+            if (userdeck[i] == 0)
+                numof0_v++;
+        }
+        if (numof0_v==20 && user.playerhp_v > enemy.monsterhp_v) { // 모든 댁의 카드가 0이면 numof0_v=20
+            cout << "You won!" << endl;
+            keepfight_v = false;
+        }
+        else if (numof0_v==20 && userselectedcard_v <= enemy.monstercard_v[z]) {
+            cout << "You lost!" << endl;
+            keepfight_v = false;
+        }
+
+        }
         // Redraw
 
         // if card num = 0, comapre hp cout << you win or loose keepfight false ( Card is 0)
-        for (int i = 0; i < 3; i++) { // take away the monster's card
-            if (enemy.monstercard_v[i] == enemy.monstercard_v[z])
-                enemy.monstercard_v[i] = 0;
-        }
+
     }
-}
+
 
 
 void CardDraw_f(int usercardhands[], int playerdeck[]){
@@ -94,8 +135,9 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){
     minstd_rand gen(rd());
     uniform_int_distribution<int> dis(1,20);
 
+    int i = 0, j = 0, max =3;
     int i_v, compare_i_v;
-    for (i_v = 0 ; i_v < 3; i_v ++){
+    for (i_v = 0 ; i_v < max; i_v ++){
         usercardhands[i_v] = dis(gen); // randomly assign the card
         for(compare_i_v = 0; compare_i_v < i_v; compare_i_v++){
             if (usercardhands[i_v] == playerdeck[compare_i_v]){ // if there is a same card re_draw;
@@ -133,7 +175,23 @@ void Redraw_f(int hands[], int deck[]){
             if (hands[compare_i_v] != redraw) index++;
         }
         if(index == 3){
-
+            hands[0] = redraw;
+            deck[redraw] = 0;
         }
     }
+}
+void Sort_f(int hands[]){
+    int i = 0, j = 0, temp = 0;
+    for(i=0;i<3;i++)
+    {
+        for(j=i+1;j<3;j++)
+        {
+            if(hands[i]>hands[j])
+            {
+                temp = hands[i];
+                hands[i]=hands[j];
+                hands[j]=temp;
+            }
+        }
+    } //sorting in ascending order.
 }

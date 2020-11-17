@@ -23,6 +23,6 @@ struct Monster{
     int monsterhp_v;
     int monsterattack_v;
     int monsterdefense_v;
-    int monstercard_v[3];
+    int monstercard_v[3] = {0};
 };
 #endif //GROUP_80_CHARACTERINFO_H

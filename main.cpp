@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <random>
+#include <algorithm>
 #include "createprofile.h"
 #include "characterinfo.h"
 #include "MonsterCreation.h"
