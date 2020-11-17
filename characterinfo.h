@@ -9,8 +9,8 @@
 struct Players{ //Default value when new characgter is made
     std::string playername_v;
     int playerhp_v = 50;
-    int playerattack_v = 7;
-    int playerdefense_v = 3;
+    int playerattack_v = 0;
+    int playerdefense_v = 10;
     int playercard_v[3] = {0};
     std::vector<int> playerequipment_v;
     int playerround_v = 1;
