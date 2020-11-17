@@ -3,29 +3,44 @@
 //
 
 #include "Battle.h"
-#include "Characterinfo.h"
+#include "characterinfo.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
 using namespace std;
 
-void PlayerCardDraw_f(Players &user, int i){
+void PlayerCardDraw_f(int usercardhands[], int playerdeck[]){
     srand((unsigned int)time(0));
     int i_v, compare_i_v;
     for (i_v = 0 ; i_v < 3; i_v ++){
-        user.playercard_v[i] = rand() % 21; // randomly assign the card
+        usercardhands[i_v] = rand() % 21; // randomly assign the card
         for(compare_i_v = 0; compare_i_v < i_v; compare_i_v++){
-            if (user.playercard_v[i_v] == user.playercard_v[compare_i_v]){ // if there is a same card re_draw;
+            if (usercardhands[i_v] == playerdeck[compare_i_v]){ // if there is a same card re_draw;
+                i_v--;
+                break;
+            }
+        }
+        // playerdeck [drawncard _ num] = 0;
+    }
+}
+
+void MonsterCardDraw_f( int monsterhands[], int monsterdeck[]){
+    srand((unsigned int)time(0));
+    int i_v, compare_i_v;
+    for (i_v = 0 ; i_v < 3; i_v ++){
+        monsterhands[i_v] = rand() % 21; // randomly assign the card
+        for(compare_i_v = 0; compare_i_v < i_v; compare_i_v++){
+            if (monsterhands[i_v] == monsterhands[compare_i_v]){ // if there is a same card re_draw;
                 i_v--;
                 break;
             }
         }
     }
 }
-
 void PlayerReDraw(){
     srand((unsigned int)time(0));
+
 
 }
 void MonsterCardDraw_f(Monster &mon, int round_num){
@@ -35,22 +50,32 @@ void MonsterCardDraw_f(Monster &mon, int round_num){
 
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
     cout << "Welcome to round: " << user.playerround_v << endl; // round notification
-    //Card Draw
-    cout << enemy.monstername_v << "'s card: " << "? ? ?" << endl; // monster card
+
+    PlayerCardDraw_f(user.playercard_v,userdeck); // player draws 3 cards
+    MonsterCardDraw_f(enemy.monstercard_v,monsterdeck); //monster draw 3 cards
+    cout << enemy.monstername_v << " drew 3 cards"<< endl;
+    cout << user.playername_v << " drew 3 cards" << endl;
+
+    cout << enemy.monstername_v << "'s card: " << "? ? ?" << endl; // monster's card unknown.
 
     cout << user.playername_v << "'s card: "; // user's card
     for(int i = 0 ; i < 3 ; i++) {
         cout << user.playercard_v[i] << ' ';
     }
     cout << "\n";
+    // loop -> fight until one side is down or if there are no more cards to draw.
+    cout << "Please select the card to attack" << endl;
 
     cout << enemy.monstername_v << " has selected a card!" << endl;
+    int n = sizeof(enemy.monstercard_v)/sizeof(enemy.monstercard_v[0]);
+    sort(enemy.monstercard_v, enemy.monstercard_v+n); //sorting in ascending order.
+    int z= rand() % 2 + 1;
 
 
     cout << user.playername_v << " please select a card to attack: ";
 
     int userselectedcard_v= 0;
-    cin >> userselectedcard_v;
+    cin >> userselectedcard_v; //11
     cout << endl;
 
     for(int i = 0 ; i < 3 ; i++) { // take away the user's card
@@ -58,9 +83,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             user.playercard_v[i] = 0;
     }
 
-    int n = sizeof(enemy.monstercard_v)/sizeof(enemy.monstercard_v[0]);
-    sort(enemy.monstercard_v, enemy.monstercard_v+n); //sorting in ascending order.
-    int z= rand() % 2 + 1;
+
 
     cout << enemy.monstername_v << "'s card is" << enemy.monstercard_v[z] << endl;
 

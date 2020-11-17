@@ -49,15 +49,13 @@ int main(){
         else{
             cout << "Game goes on..";
         }
-        int playerdeck[21] = {1};
+        int playerdeck[21] = {1}; // creating a deck for each rounds
         int monsterdeck[21] = {1};
 
         cout << "Round"<< user.playerround_v <<  endl;
-        MonsterCreation_f(enemy,round);
-        cout << enemy.monstername_v << " appeared!";
-        Battle_f(user, enemy,round,playerdeck,monsterdeck){
-
-        }
+        MonsterCreation_f(enemy,round); // monster is created for each round
+        cout << enemy.monstername_v << " appeared!" << endl;
+        Battle_f(user, enemy,round,playerdeck,monsterdeck);
 
     }
 
