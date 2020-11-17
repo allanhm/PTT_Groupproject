@@ -46,6 +46,8 @@ int main(){
         else{
             cout << "Game goes on..";
         }
+        int  playerdeck[21] = {1};
+        int monsterdeck[21] = {1};
         cout << "Round"<< user.playerround_v <<  endl;
         Monster enemy;
         MonsterCreation_f(enemy,1);
