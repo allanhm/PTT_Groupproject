@@ -44,6 +44,7 @@ bool profile_creation(int button, Players &user) {
                         cout << "Your name does not exist. Type your name again" << endl;
                     }
                     else { // if the program find it it will load the file
+                        user.playername_v = users;
                         load_f(user);
                         cout << "Welcome back" << endl;
                         read.close();

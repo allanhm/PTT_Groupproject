@@ -50,7 +50,8 @@ int main(){
         Monster enemy;
         MonsterCreation_f(enemy,1);
         cout << enemy.monstername_v << " appeared!";
-        //
+
+        Battle_f(user, enemy, round)
 
     }
 

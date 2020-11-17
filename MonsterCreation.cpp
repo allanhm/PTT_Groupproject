@@ -1,13 +1,14 @@
 //
 // Created by heemin Kang on 2020/11/17.
 //
-#include <iostream>
 #include <string>
 #include "MonsterCreation.h"
 #include "characterinfo.h"
 #include <cstdlib>
+#include <ctime>
 void MonsterCreation_f( Monster &enemy, int round){
     std::string monstername_set_v[5] = {"Mike Wazowski","James Sullivan","Pikachu","Kaf","Ian Holiday"};
+    srand((unsigned int)time(0));
     int pick = rand()%5;
     enemy.monstername_v = monstername_set_v[pick];
     enemy.monsterhp_v = 50;
