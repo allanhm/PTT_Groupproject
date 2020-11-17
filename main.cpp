@@ -11,36 +11,28 @@
 #include "MonsterCreation.h"
 #include "save.h"
 #include "Battle.h"
+
 using namespace std;
 
 
 int main(){
+    Players user; // Create structure to contain character information
     int game_option;
-    Players user;
-    cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl;
+    bool repeat = true;
+    cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl; //// first display when it is start
     cout << "                  Deck Dungeon        " << endl;
-
-    while(true){ // first display when it is start
+    while(repeat){  //in case of pressing wrong key
         cout << "        Please choose optoins below        " << endl;
         cout << " 1. Create Profile" << endl;
         cout << " 2. Load Profile " << endl;
         cout << " 3. Exit" << endl;
         cout << "Your Option: " ;
         cin >> game_option;
-        if (game_option < 1 || game_option > 3){
-            cout << " Wrong option ! Please press other keys"<<endl;
-        }
+        repeat = profile_creation(int(game_option), user); // based on the option it will helps to create
+        }                                                     // load file or terminate the game
 
-        else{
-            if (!profile_creation(game_option, user)){
-                break;
-            }
-        }
-
-
-    }
-    Monster enemy;
-    char saveindex;
+    Monster enemy; // create a monster structure to use in the rest of the game.
+    char saveindex; // bsed on the input
     for(; user.playerround_v < 4; user.playerround_v++){
         int round = user.playerround_v;
         cout << "Do you want to Save & Quit? (Y/N)";

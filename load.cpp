@@ -23,9 +23,9 @@ void load_f(Players &user) {
         cout << user.playercard_v[i] << ' ';
     }
     cout << endl;
-    for(int i = 0 ; i < 3 ; i++) {
+    /*for(int i = 0 ; i < 3 ; i++) {
         fin >> user.playerequipment_v[i];
-    }
+    }*/
     fin >> user.playerround_v;
     cout << "Current round: " << user.playerround_v << endl;
     cout << "-------------------"<< endl;

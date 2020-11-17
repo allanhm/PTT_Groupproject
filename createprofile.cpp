@@ -8,11 +8,10 @@
 using namespace std;
 
 bool profile_creation(int button, Players &user) {
-    string name_;
+    string name_; // character name
     bool check = true;
-    while (check){
         switch(button){
-            case 1:
+            case 1: // new character
                 while(true){
                     cout << "Create new profile" << endl;
                     cout << "Enter your name: ";
@@ -58,7 +57,9 @@ bool profile_creation(int button, Players &user) {
                 cout << "The game is terminated";
                 exit(1);
             default:
-                cout << "Choose again!";
+                cout << "Choose again!"<< endl;
+                check = true;
+                break;
             }
-        }
+        return check;
     }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include <vector>
 #include "characterinfo.h"
 #include "createprofile.h"
 using namespace std;
@@ -18,16 +18,15 @@ void save_f(Players &user) {
                 write <<endl;
             }
         }
+    for (auto itr = user.playerequipment_v.begin(); itr != user.playerequipment_v.end(); ++itr)
+    {
+        write << *itr << endl;
+    }
 
-    for(int i = 0 ; i < 3 ; i++) {
-            write << user.playerequipment_v[i];
-            if (i == 2){
-                write << endl;
-            }
-        }
     write << user.playerround_v << endl;
     
     write.close();
+
     cout << "Save successfully complete! Bye Bye!" << endl;
     exit(1);
 }
