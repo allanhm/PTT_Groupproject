@@ -7,7 +7,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 using namespace std;
+
 void PlayerCardDraw_f(Players &user, int i){
     srand((unsigned int)time(0));
     int i_v, compare_i_v;
@@ -30,6 +32,8 @@ void PlayerReDraw(){
 void MonsterCardDraw_f(Monster &mon, int round_num){
 
 }
+
+
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
     cout << "Welcome to round: " << user.playerround_v << endl; // round notification
     //Card Draw
@@ -64,12 +68,27 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
     if (userselectedcard_v > enemy.monstercard_v[z]) {
         cout << "You won!" << endl;
         cout << user.playerattack_v << " damange to the monster!" << endl;
-        enemy.monsterhp_v= enemy.monsterhp_v - user.playerattack_v +enemy.monsterdefense_v;
+        enemy.monsterhp_v= enemy.monsterhp_v - user.playerattack_v + enemy.monsterdefense_v;
         cout << "——Monster Status——" << endl;
+        cout << "HP: " << enemy.monsterhp_v << " / 50" << endl;
+        cout << "Damage: " <<  enemy.monsterattack_v << endl;
+        cout << "Defense: " << enemy.monsterdefense_v << endl;
+        
+    }
+    
+    if (userselectedcard_v <= enemy.monstercard_v[z]) {
+        cout << "You lost!" << endl;
+        cout << enemy.monsterattack_v << " damange to you!" << endl;
+        user.playerhp_v = user.playerhp_v - enemy.monsterattack_v + enemy.monsterdefense_v;
+        cout << "——User Status——" << endl;
         cout << "HP: " << user.playerhp_v << " / 50" << endl;
         cout << "Damage: " <<  user.playerattack_v<< endl;
         cout << "Defense: " << user.playerdefense_v << endl;
     }
-
-
+    
+    for(int i = 0 ; i < 3 ; i++) { // take away the user's card
+        if (enemy.monstercard_v[i] == enemy.monstercard_v[z])
+            enemy.monstercard_v[i] = 0;
+    }
+     
 }
