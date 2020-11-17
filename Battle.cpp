@@ -21,9 +21,15 @@ void PlayerCardDraw_f(int usercardhands[], int playerdeck[]){
                 break;
             }
         }
-        // playerdeck [drawncard _ num] = 0;
+        for (int t = 0; t < 3; t++) {
+            for(int i = 0 ; i < 20 ; i++) { // take away the user's card in the deck
+                if (usercardhands[t] == playerdeck[i])
+                    playerdeck[i] = 0;
+            }
+        }
     }
 }
+
 
 void MonsterCardDraw_f( int monsterhands[], int monsterdeck[]){
     srand((unsigned int)time(0));
@@ -36,8 +42,15 @@ void MonsterCardDraw_f( int monsterhands[], int monsterdeck[]){
                 break;
             }
         }
+        for (int t = 0; t < 3; t++) {
+            for(int i = 0 ; i < 20 ; i++) { // take away the monster's card in the deck
+                if (monsterhands[t] == monsterdeck[i])
+                    monsterdeck[i] = 0;
+            }
+        }
     }
 }
+
 void PlayerReDraw(){
     srand((unsigned int)time(0));
 
