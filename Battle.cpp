@@ -77,9 +77,19 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         StatusAfterB_f(user, enemy);
 
         // if either of the chcarters is down (which is hp < 0) cout << You or Monster loose keepfight => false
+        if (user.playerhp_v <= 0) {
+            cout << "You lost!" << endl;
+            keepfight_v = false;
+        }
+        
+        if (enemy.mosterhp_v <= 0) {
+            cout << "You won!" << endl;
+            keepfight_v = false;
+        }
+        
         // Redraw
 
-        // if card num = 0, comapre hp cout << you win or loose keepfight false ( Card is 0)
+        // if card num = 0, comapre cout << you win or loose keepfight false ( Card is 0)
         int numof0_v=0;
         for (int i = 0; i < 20; i++) {
             if (playerdeck[i] == 0)
@@ -87,12 +97,12 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         }
         if (numof0_v==20 && userselectedcard_v > enemy.monstercard_v[z]) { // 모든 댁의 카드가 0이면 numof0_v=20
             cout << "You won!" << endl;
-            keepfight_v = false
+            keepfight_v = false;
         }
     
         if (numof0_v==20 && userselectedcard_v <= enemy.monstercard_v[z]) {
-            cout << "You lost" << endl;
-            keepfight_v = false
+            cout << "You lost!" << endl;
+            keepfight_v = false;
         }
 
         for (int i = 0; i < 3; i++) { // take away the monster's card
