@@ -29,17 +29,6 @@ void PlayerReDraw(){
 
 }
 void MonsterCardDraw_f(Monster &mon, int round_num){
-    srand((unsigned int)time(0));
-    int i_v, comparemonster_i_v;
-    for (i_v = 0 ; i_v < 3; i_v ++){
-        enemy.monstercard_v[i] = rand() % 21; // randomly assign the card
-        for(comparemonster_i_v = 0; comparemonster_i_v < i_v; comparemonster_i_v++){
-            if (enemy.monstercard_v[i_v] == enemy.monstercard_v[compare_i_v]){ // if there is a same card re_draw;
-                i_v--;
-                break;
-            }
-        }
-    }
 
 }
 
