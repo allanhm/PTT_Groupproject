@@ -10,7 +10,6 @@ void save_f(Players &user) {
     string filename = user.playername_v + ".txt";
     write.open(filename); // save hp, attack, defense , card, equipment, round
     write << user.playerhp_v << endl;
-    write << user.playerlevel_v << endl;
     write << user.playerattack_v << endl;
     write << user.playerdefense_v << endl;
     for(int i = 0 ; i < 3 ; i++) {
