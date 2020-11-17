@@ -26,6 +26,12 @@ void load_f(Players &user) {
     /*for(int i = 0 ; i < 3 ; i++) {
         fin >> user.playerequipment_v[i];
     }*/
+    
+    for (auto itr = user.playerequipment_v.begin(); itr != user.playerequipment_v.end(); ++itr)
+    {
+        fin >> *itr >> endl;
+    }
+    
     fin >> user.playerround_v;
     cout << "Current round: " << user.playerround_v << endl;
     cout << "-------------------"<< endl;
