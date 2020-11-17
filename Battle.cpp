@@ -11,6 +11,7 @@ using namespace std;
 
 void CardDraw_f(int usercardhands[], int playerdeck[]);
 
+void Redraw_f(int hands[], int deck[]);
 void StatusAfterB_f(Players user, Monster mon);
 
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
@@ -116,4 +117,23 @@ void StatusAfterB_f(Players user, Monster mon){
     cout << "Damage: " <<  user.playerattack_v<< endl;
     cout << "Defense: " << user.playerdefense_v << endl;
 
+}
+
+void Redraw_f(int hands[], int deck[]){
+    random_device rd; //random_device for seed value
+    minstd_rand gen(rd());
+    uniform_int_distribution<int> dis(1,20);
+
+    int compare_i_v, redraw;
+    int index = 0;
+
+    while(index < 3){
+        redraw= dis(gen); // randomly assign the card
+        for(compare_i_v = 1; compare_i_v < 3; compare_i_v++){
+            if (hands[compare_i_v] != redraw) index++;
+        }
+        if(index == 3){
+
+        }
+    }
 }
