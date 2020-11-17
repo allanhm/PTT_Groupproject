@@ -4,6 +4,7 @@
 
 #include "Battle.h"
 #include "characterinfo.h"
+#include <vector>
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -17,6 +18,22 @@ void Sort_f(int hands[]);
 void StatusAfterB_f(Players user, Monster mon);
 
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
+    int current_weapon = 0, current_armor = 0, item_option;
+    vector<int> current_potion;
+    for(int i = 0; i <user.playerequipment_v.size(); i++){
+        if(user.playerequipment_v[i]/100 == 1){
+            int weapon = user.playerequipment_v[i];
+            current_weapon += (weapon%100);
+        }
+        else if(user.playerequipment_v[i]/100 == 2){
+            int armor = user.playerequipment_v[i];
+            current_armor += (armor);
+        }
+        else if(user.playerequipment_v[i]/100 == 3) {
+            int potion = user.playerequipment_v[i] % 100;
+            current_potion.push_back(potion);
+        }
+    }
     cout << "Welcome to round: " << user.playerround_v << endl; // round notification
 
     CardDraw_f(user.playercard_v,userdeck); // player draws 3 cards
@@ -37,6 +54,31 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
     bool keepfight_v = true;
     while(keepfight_v) {
+        cout <<"Item Phase" << endl;
+        if(current_potion.size() ==0 ){
+            cout<< "There is no potion you can use" <<endl<<endl;
+        }
+        else {
+            cout << "Current Potion: ";
+            for (int i = 0; i < current_potion.size(); i++) {
+                cout << i+1 << "): " << current_potion[i] << ' ';
+            }
+            cout << endl;
+            cout << "which one do want to you use?";
+            cin >> item_option;
+            user.playerhp_v += current_potion[item_option - 1];
+                for(int j =0 ; j < user.playerequipment_v.size();j++){
+                    if (current_potion[item_option - 1] == user.playerequipment_v[j] - 300 ){
+                        user.playerequipment_v.erase(user.playerequipment_v.begin() + item_option -1);
+                        current_potion.erase(current_potion.begin() + item_option -1);
+                    }
+                }
+                if (user.playerhp_v >= 50) user.playerhp_v = 50;
+                cout << "Your HP is " << user.playerhp_v << endl << endl;
+            }
+
+
+
         cout << "Attack Phase" << endl;
         cout << "remaining cards: ";
         for(int i = 0 ; i < 3 ; i++) {
@@ -78,14 +120,16 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         // --------------------Comparing damage
         if (userselectedcard_v > monster_card_v) { //user wins
             cout << "You won!" << endl;
-            damage = userselectedcard_v - enemy.monsterdefense_v;
+            damage = userselectedcard_v - enemy.monsterdefense_v+current_weapon;
+            if (damage <= 0) damage =0;
             cout << damage << " damange to the monster!" << endl;
             enemy.monsterhp_v -= damage;
         }
 
         if (userselectedcard_v <= monster_card_v) { // monster wins
             cout << "You lost!" << endl;
-            damage = monster_card_v - user.playerdefense_v;
+            damage = monster_card_v - (user.playerdefense_v+current_armor);
+            if (damage <= 0) damage =0;
             cout << damage << " damange to you!" << endl;
             user.playerhp_v -= damage;
         }

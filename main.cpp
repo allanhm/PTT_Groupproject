@@ -11,6 +11,7 @@
 #include "MonsterCreation.h"
 #include "save.h"
 #include "Battle.h"
+#include "item.h"
 
 using namespace std;
 
@@ -53,7 +54,7 @@ int main(){
         MonsterCreation_f(enemy,round); // monster is created for each round
         cout << enemy.monstername_v << " appeared!" << endl;
         Battle_f(user, enemy,round,playerdeck,monsterdeck);
-        user.playerhp_v = 50;
+        ItemDisplay_f(round, user);
     }
     cout << "End of Game" << endl;
     return 0;

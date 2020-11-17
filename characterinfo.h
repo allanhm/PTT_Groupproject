@@ -6,6 +6,12 @@
 #define GROUP_80_CHARACTERINFO_H
 #include <iostream>
 #include <vector>
+
+/*struct Item{
+    int weapon;
+    int armor;
+    int potion;
+};*/
 struct Players{ //Default value when new characgter is made
     std::string playername_v;
     int playerhp_v = 50;
@@ -16,6 +22,7 @@ struct Players{ //Default value when new characgter is made
     int playerround_v = 1;
 
 };
+
 
 
 struct Monster{
