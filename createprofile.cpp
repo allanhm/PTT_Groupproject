@@ -57,8 +57,8 @@ bool profile_creation(int button, Players &user) {
                 cout << "Bye Bye!" <<endl;
                 cout << "The game is terminated";
                 exit(1);
-
+            default:
+                cout << "Choose again!";
+            }
         }
-        }
-        return false;
     }
