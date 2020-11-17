@@ -13,14 +13,10 @@ void load_f(Players &user) {
     fin >> user.playerhp_v;
     cout << "-----Player Status-----" << endl;
     cout << "HP: " << user.playerhp_v << " / 50" << endl;
-    fin >> user.playerlevel_v;
-    cout << "Level: " << user.playerlevel_v << endl;
     fin >> user.playerattack_v;
     cout << "Damage: " <<  user.playerattack_v<< endl;
     fin >> user.playerdefense_v;
     cout << "Defense: " << user.playerdefense_v << endl;
-    fin >> user.playerround_v;
-    cout << "Current round: " << user.playerround_v << endl;
     cout << "Card number: ";
     for(int i = 0 ; i < 3 ; i++) {
         fin >> user.playercard_v[i];
@@ -30,6 +26,8 @@ void load_f(Players &user) {
     for(int i = 0 ; i < 3 ; i++) {
         fin >> user.playerequipment_v[i];
     }
+    fin >> user.playerround_v;
+    cout << "Current round: " << user.playerround_v << endl;
     cout << "-------------------"<< endl;
     fin.close();
 }
