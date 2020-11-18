@@ -98,7 +98,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
                     break;
                 }
                 if (i == 2) {
-                    cout << "You pciekd wrong number please pick again" << endl;
+                    cout << "You picked the wrong number please pick again" << endl;
                 }
             }
         }
