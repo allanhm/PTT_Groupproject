@@ -110,7 +110,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
         int z = rand() % 2 + 1; // random pick from monster
         int monster_card_v = enemy.monstercard_v[z];
-        cout << enemy.monstername_v << "'s card is" << monster_card_v << endl;
+        cout << enemy.monstername_v << "'s card is " << monster_card_v << endl;
         for (int i = 0; i < 3; i++) { // take away the monster's card
             if (enemy.monstercard_v[i] == monster_card_v)
                 enemy.monstercard_v[i] = 0;
