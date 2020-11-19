@@ -13,7 +13,8 @@ bool profile_creation(char button, Players &user) {
         switch(button){
             case '1': // new character
                 while(true){
-                    cout << "Create new profile" << endl;
+                    cout << endl;
+                    cout << "-----Create a new profile-----" << endl;
                     cout << "Enter your name: ";
                     cin >> name_;
                     user.playername_v = name_;
@@ -25,12 +26,14 @@ bool profile_creation(char button, Players &user) {
                     else {
                         ofstream write(name_); // make a new file if the character name is not exist
                         write.close();
-                        cout << "Welcome to Deck Dungeon!";
+                        cout << endl;
+                        cout << "-----Welcome to Deck Dungeon!-----" << endl;
                         check = false;
                         break;
                     }
                 }
                 break;
+                
             case '2': // Load the file
                 while (true) {
                     cout << "Enter your name: " << endl;
@@ -52,6 +55,7 @@ bool profile_creation(char button, Players &user) {
                     }
                 }
                 break;
+                
             case '3':
                 cout << "Bye Bye!" <<endl;
                 cout << "The game is terminated";
@@ -60,5 +64,6 @@ bool profile_creation(char button, Players &user) {
                 cout << "Choose again!"<< endl;
                 return check;
             }
+    
         return check;
     }
