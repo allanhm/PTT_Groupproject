@@ -4,6 +4,7 @@
 #include "createprofile.h"
 #include "characterinfo.h"
 #include "load.h"
+#include "Battle.h"
 
 using namespace std;
 
@@ -26,14 +27,7 @@ bool profile_creation(char button, Players &user) {
                     else {
                         ofstream write(name_); // make a new file if the character name is not exist
                         write.close();
-                        cout << endl;
-                        cout << "-----User Status-----" << endl;
-                        cout << "HP: 50 / 50" << endl;
-                        cout << endl;
-                        cout << "-----Monster Status-----" << endl;
-                        cout << "HP: 50 / 50" << endl;
-                        cout << endl;
-                        cout << "-----Welcome to Deck Dungeon!-----" << endl;
+                        StatusAfterBPlyaer_f(0, 0, user);
                         check = false;
                         break;
                     }
@@ -54,7 +48,7 @@ bool profile_creation(char button, Players &user) {
                     else { // if the program find it it will load the file
                         user.playername_v = users;
                         load_f(user);
-                        cout << "Welcome back" << endl;
+                        cout << "Welcome back" << endl <<endl;
                         read.close();
                         check = false;
                         break;

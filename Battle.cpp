@@ -15,23 +15,18 @@ void CardDraw_f(int usercardhands[], int playerdeck[]);
 void Redraw_f(int why[], int check[]);
 
 void Sort_f(int hands[]);
-void StatusAfterBPlyaer_f(Players user);
+void StatusAfterBPlyaer_f(int current_weapon, int current_armor,Players player);
 
 void StatusAFterBMonster_f(Monster enemy);
 
+void ItemList_f(int &current_weapon, int &current_armor, Players &user);
+
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
-    int current_weapon = 0, current_armor = 0, item_option;
+    int c_weapon = 0, c_armor = 0, item_option;
     vector<int> current_potion;
+    ItemList_f(c_weapon,c_armor,user);
     for(int i = 0; i <user.playerequipment_v.size(); i++){
-        if(user.playerequipment_v[i]/100 == 1){
-            int weapon = user.playerequipment_v[i];
-            current_weapon += (weapon%100);
-        }
-        else if(user.playerequipment_v[i]/100 == 2){
-            int armor = user.playerequipment_v[i];
-            current_armor += (armor);
-        }
-        else if(user.playerequipment_v[i]/100 == 3) {
+        if(user.playerequipment_v[i]/100 == 3) {
             int potion = user.playerequipment_v[i] % 100;
             current_potion.push_back(potion);
         }
@@ -40,19 +35,19 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
     CardDraw_f(user.playercard_v,userdeck); // player draws 3 cards
     CardDraw_f(enemy.monstercard_v,monsterdeck); //monster draw 3 cards
 
-    cout << user.playername_v << " drew 3 cards" << endl; // display player's card
+    cout << user.playername_v << " drew 3 cards\n\n"; // display player's card
     for(int i = 0 ; i < 3 ; i++) {
         cout << user.playercard_v[i] << ' ';
     }
     cout << endl;
-    cout << enemy.monstername_v << " drew 3 cards"<< endl; // display monser's card
+    cout << enemy.monstername_v << " drew 3 cards\n\n"; // display monser's card
     cout << endl;
 
     bool keepfight_v = true;
     while(keepfight_v) {
         cout <<"-----Item Phase-----" << endl;
         if(current_potion.size() ==0 ){
-            cout<< "There is no potion you can use" <<endl<<endl;
+            cout<< "There is no potion you can use\n\n";
         }
         else {
             cout << "Current Potion: ";
@@ -64,17 +59,19 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             cin >> item_option;
             int option = item_option -1;
             user.playerhp_v += current_potion[option];
-                for(int j =0 ; j < user.playerequipment_v.size();j++){
+                for(int j =0 ; j < user.playerequipment_v.size();j++){ // check the potion and delete from the item list
                     if (current_potion[option] == user.playerequipment_v[j] - 300 ){
-                        user.playerequipment_v.erase(user.playerequipment_v.begin() + option);
+                        user.playerequipment_v.erase(user.playerequipment_v.begin() + j);
                         current_potion.erase(current_potion.begin()+option);
                     }
                 }
                 if (user.playerhp_v >= 50) user.playerhp_v = 50;
-                cout << "Your HP is " << user.playerhp_v << endl << endl;
+                cout << "Your HP is now " << user.playerhp_v << endl << endl;
             }
 
+        StatusAfterBPlyaer_f(c_weapon, c_armor, user);
 
+        StatusAFterBMonster_f(enemy);
 
         cout << "-----Attack Phase-----" << endl;
         cout << "remaining cards: ";
@@ -116,7 +113,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         // --------------------Comparing damage
         if (userselectedcard_v > monster_card_v) { //user wins
             cout << "-----You won!-----" << endl;
-            damage = userselectedcard_v - enemy.monsterdefense_v+current_weapon;
+            damage = userselectedcard_v - enemy.monsterdefense_v+c_weapon;
             if (damage <= 0) damage =0;
             cout << damage << " damange to the monster!" << endl;
             cout << endl;
@@ -125,15 +122,13 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
         if (userselectedcard_v <= monster_card_v) { // monster wins
             cout << "-----You lost!-----" << endl;
-            damage = monster_card_v - (user.playerdefense_v+current_armor);
+            damage = monster_card_v - (user.playerdefense_v+c_armor);
             if (damage <= 0) damage =0;
             cout << damage << " damange to you!" << endl;
             cout << endl;
             user.playerhp_v -= damage;
         }
-        StatusAfterBPlyaer_f(user);
 
-        StatusAFterBMonster_f(enemy);
 
         // if either of the chcarters is down (which is hp < 0) cout << You or Monster loose keepfight => false
         if (user.playerhp_v <= 0) {
@@ -156,7 +151,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             if (userdeck[i] == 0)
                 numof0_v++;
         }
-        if (numof0_v==20 && user.playerhp_v > enemy.monsterhp_v) { // 모든 댁의 카드가 0이면 numof0_v=20
+        if (numof0_v==20 && user.playerhp_v > enemy.monsterhp_v) {
             cout << "-----You won!-----" << endl;
             keepfight_v = false;
         }
@@ -187,11 +182,12 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){
         playerdeck[usercardhands[i]] = 0;
     }
 }
-void StatusAfterBPlyaer_f(Players player){
+void StatusAfterBPlyaer_f(int current_weapon, int current_armor,Players player){
+
     cout << "-----User Status-----" << endl;
     cout << "HP: " << player.playerhp_v << " / 50" << endl;
-    cout << "Damage: " <<  player.playerattack_v<< endl;
-    cout << "Defense: " << player.playerdefense_v << endl;
+    cout << "Damage: " <<  player.playerattack_v<< " + " << current_weapon<< endl;
+    cout << "Defense: " << player.playerdefense_v << " + " << current_armor << endl;
     cout << endl;
 }
 
@@ -222,7 +218,19 @@ void Redraw_f(int why[], int check[]) {
         }
     }
 
+void ItemList_f(int &current_weapon, int &current_armor, Players &user){
+    for(int i = 0; i <user.playerequipment_v.size(); i++){
+        if(user.playerequipment_v[i]/100 == 1){
+            int weapon = user.playerequipment_v[i];
+            current_weapon += (weapon%100);
+        }
+        else if(user.playerequipment_v[i]/100 == 2){
+            int armor = user.playerequipment_v[i];
+            current_armor += (armor%200);
+        }
+    }
 
+}
 
 void Sort_f(int hands[]){
     int i , j, temp;

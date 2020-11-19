@@ -20,7 +20,6 @@ int main(){
     Players user; // Create structure to contain character information
     string game_option;
     bool repeat = true;
-    
     cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl; //// first display when it is start
     cout << "                  Deck Dungeon        " << endl;
     
@@ -52,7 +51,7 @@ int main(){
 
         cout << "Welcome to Round "<< user.playerround_v <<  endl;
         MonsterCreation_f(enemy,round); // monster is created for each round
-        cout << enemy.monstername_v << " appeared!" << endl;
+        cout << enemy.monstername_v << " appeared!" << endl << endl;
         
         Battle_f(user, enemy,round,playerdeck,monsterdeck);
 
@@ -61,6 +60,9 @@ int main(){
         }
         
         cout << "Do you want to Save & Quit? (Y/N) ";
+        if(round ==5){
+            cout << "This is the last round if you don't save your data will be lost " << endl;
+        }
         cin >> saveindex;
         cout << endl;
         
@@ -69,18 +71,9 @@ int main(){
         }
         else{
                 cout << "Game goes on.." << endl;
-                StatusAfterBPlyaer_f(user);
         }
     }
-    
     cout << "End of Game" << endl;
-    
-    if(saveindex == 'Y'|| saveindex == 'y'){
-        save_f(user);
-    }
-    
-    else{
-        cout << "Game is terminated without being saved. Thank you!" << endl;;
-    }
+    cout << "Game is terminated without being saved. Thank you!" << endl;;
     return 0;
 }

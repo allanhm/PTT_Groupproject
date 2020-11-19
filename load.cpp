@@ -50,7 +50,7 @@ void load_f(Players &user) {
             index++;
         }
     }
-    cout << "weapon damage: " << current_weapon << endl;
+    cout << "weapon damage: " << current_weapon << " + " << endl;
     cout << "armor defense: " << current_armor << endl;
     cout << "potion: " << index << " bottle(s)"<< endl;
     cout << "-------------------"<< endl;
