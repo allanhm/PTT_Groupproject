@@ -27,6 +27,12 @@ bool profile_creation(char button, Players &user) {
                         ofstream write(name_); // make a new file if the character name is not exist
                         write.close();
                         cout << endl;
+                        cout << "-----User Status-----" << endl;
+                        cout << "HP: 50 / 50" << endl;
+                        cout << endl;
+                        cout << "-----Monster Status-----" << endl;
+                        cout << "HP: 50 / 50" << endl;
+                        cout << endl;
                         cout << "-----Welcome to Deck Dungeon!-----" << endl;
                         check = false;
                         break;
