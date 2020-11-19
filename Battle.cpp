@@ -166,10 +166,6 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         }
 
         }
-        // Redraw
-
-        // if card num = 0, comapre hp cout << you win or loose keepfight false ( Card is 0)
-
     }
 
 
@@ -181,14 +177,14 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){
 
     int i = 0, max =3;
     for (;i < max; i++){
-        usercardhands[i] =dis(gen); //13 12
+        usercardhands[i] =dis(gen);
         for(int j = 0;j<i;j++){
             if (usercardhands[i] == usercardhands[j]){
                 i--;
                 break;
             }
-            playerdeck[usercardhands[i]] = 0;
         }
+        playerdeck[usercardhands[i]] = 0;
     }
 }
 
@@ -204,7 +200,7 @@ void StatusAfterB_f(Players user, Monster mon){
 
 }
 
-void Redraw_f(int why[], int check[], int userselectedcard_v1) {
+void Redraw_f(int why[], int check[]) {
     bool isoverlapped = true;
     random_device rd;
   
@@ -213,13 +209,15 @@ void Redraw_f(int why[], int check[], int userselectedcard_v1) {
         uniform_int_distribution<int> dis(1, 20);
         int redraw = dis(gen);
         int i = 1;
-        if (check[redraw] == i && redraw != why[1] && redraw != why[1] && redraw != userselectedcard_v1) {
+        if (check[redraw] == i){
             why[0] = redraw;
             check[redraw] = 0;
             isoverlapped = false;
+            }
+        else isoverlapped =true;
         }
     }
-}
+
 
 
 void Sort_f(int hands[]){
