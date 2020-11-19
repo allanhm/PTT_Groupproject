@@ -1,9 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <vector>
 #include "characterinfo.h"
-#include "createprofile.h"
 using namespace std;
 void save_f(Players &user) { // saves the current progress of the user from the point that the user saved and quit.
     ofstream write;

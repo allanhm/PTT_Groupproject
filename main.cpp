@@ -2,9 +2,6 @@
 // Created by heemin Kang on 2020/11/07.
 //
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <random>
 #include <algorithm>
 #include "createprofile.h"
 #include "characterinfo.h"
@@ -21,14 +18,15 @@ int main(){
     string game_option;
     bool repeat = true;
     
-    cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl; //// first display when it is start
-    cout << "                  Deck Dungeon        " << endl;
-    
+    cout << "|---------COMP2113/ENGG1340 Group-80 Project---------|" << endl; //// first display when it is start
+    cout << "|                 Deck Dungeon                       |" << endl;
+    cout << "|                                                    |" << endl;
     while(repeat){  //in case of pressing wrong key
-        cout << "        Please choose optoins below        " << endl;
-        cout << " 1. Create Profile" << endl;
-        cout << " 2. Load Profile " << endl;
-        cout << " 3. Exit" << endl;
+        cout << "|        Please choose optoins below                 |" << endl;
+        cout << "|        1. Create Profile                           |"<< endl;
+        cout << "|        2. Load Profile                             |"<< endl;
+        cout << "|        3. Exit                                     |"<< endl;
+        cout << "|----------------------------------------------------|" << endl;
         cout << "Your Option: " ;
         cin >> game_option;
         if(game_option.length()>1){ // This is when the user has inpitted a wrong option.
