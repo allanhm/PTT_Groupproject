@@ -6,7 +6,7 @@
 #include "characterinfo.h"
 using namespace std;
 
-struct Item_list{
+struct Item_list{ // structure to store different type of items.
     int weapon;
     int armor;
     int potion;
@@ -15,8 +15,8 @@ struct Item_list{
 void ItemDisplay_f(int round, Players &user) {
     Item_list display;
     char useritem_v;
-    switch(round){
-        case 1:
+    switch(round){ // Random strength assigned to each item after the end of each round
+        case 1: 
             display.weapon = rand()% 7 + 2;
             display.armor = rand()% 5 + 1;
             display.potion = rand() % 5 + 7;
@@ -46,18 +46,19 @@ void ItemDisplay_f(int round, Players &user) {
     cout << display.potion <<endl;
     cout << "Please select an item: ";
     cin >> useritem_v;
+    
     switch(useritem_v){
         case 'w':
         case 'W':
-            user.playerequipment_v.push_back(display.weapon+100);
+            user.playerequipment_v.push_back(display.weapon+100); // Stores the strength assigned to the playerequipment_v vector.
             break;
         case 'a':
         case 'A':
-            user.playerequipment_v.push_back(display.armor+200);
+            user.playerequipment_v.push_back(display.armor+200); // Stores the strength assigned to the playerequipment_v vector.
             break;
         case 'p':
         case 'P':
-            user.playerequipment_v.push_back(display.potion+300);
+            user.playerequipment_v.push_back(display.potion+300); // Stores the strength assigned to the playerequipment_v vector.
     }
 
 }
