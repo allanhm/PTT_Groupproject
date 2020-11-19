@@ -6,5 +6,8 @@
 #define GROUP_80_BATTLE_H
 #include "characterinfo.h"
 
-void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]);
+void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]);\
+
+
+void StatusAfterBPlyaer_f(Players user);
 #endif //GROUP_80_BATTLE_H

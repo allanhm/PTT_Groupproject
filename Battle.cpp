@@ -15,7 +15,9 @@ void CardDraw_f(int usercardhands[], int playerdeck[]);
 void Redraw_f(int why[], int check[]);
 
 void Sort_f(int hands[]);
-void StatusAfterB_f(Players user, Monster mon);
+void StatusAfterBPlyaer_f(Players user);
+
+void StatusAFterBMonster_f(Monster enemy);
 
 void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int monsterdeck[]){ // player deack , monster
     int current_weapon = 0, current_armor = 0, item_option;
@@ -98,7 +100,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             }
         }
         cout << enemy.monstername_v << " has selected a card!" << endl;
-        cout << enemy.monstercard_v[0] << " " << enemy.monstercard_v[1] << " " << enemy.monstercard_v[2] << endl;
+
 
         int z = rand() % 2 + 1; // random pick from monster
         int monster_card_v = enemy.monstercard_v[z];
@@ -129,7 +131,9 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             cout << endl;
             user.playerhp_v -= damage;
         }
-        StatusAfterB_f(user, enemy);
+        StatusAfterBPlyaer_f(user);
+
+        StatusAFterBMonster_f(enemy);
 
         // if either of the chcarters is down (which is hp < 0) cout << You or Monster loose keepfight => false
         if (user.playerhp_v <= 0) {
@@ -183,18 +187,21 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){
         playerdeck[usercardhands[i]] = 0;
     }
 }
+void StatusAfterBPlyaer_f(Players player){
+    cout << "-----User Status-----" << endl;
+    cout << "HP: " << player.playerhp_v << " / 50" << endl;
+    cout << "Damage: " <<  player.playerattack_v<< endl;
+    cout << "Defense: " << player.playerdefense_v << endl;
+    cout << endl;
+}
 
-void StatusAfterB_f(Players user, Monster mon){
+void StatusAFterBMonster_f(Monster mon){
     cout << "-----Monster Status-----" << endl;
     cout << "HP: " << mon.monsterhp_v << " / 50" << endl;
     cout << "Damage: " <<  mon.monsterattack_v << endl;
     cout << "Defense: " << mon.monsterdefense_v << endl;
     cout << endl;
-    cout << "-----User Status-----" << endl;
-    cout << "HP: " << user.playerhp_v << " / 50" << endl;
-    cout << "Damage: " <<  user.playerattack_v<< endl;
-    cout << "Defense: " << user.playerdefense_v << endl;
-    cout << endl;
+
 }
 
 void Redraw_f(int why[], int check[]) {

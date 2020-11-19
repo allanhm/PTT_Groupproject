@@ -67,15 +67,9 @@ int main(){
         if(saveindex == 'Y'|| saveindex == 'y'){
             save_f(user);
         }
-        
         else{
-            cout << "-----Game goes on...-----" << endl;
-            cout << endl;
-            cout << "-----User Status-----" << endl;
-            cout << "HP: 50 / 50" << endl;
-            cout << "-----Monster Status-----" << endl;
-            cout << "HP: 50 / 50" << endl;
-            cout << endl;
+                cout << "Game goes on.." << endl;
+                StatusAfterBPlyaer_f(user);
         }
     }
     
