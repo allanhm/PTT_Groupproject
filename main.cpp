@@ -20,6 +20,7 @@ int main(){
     Players user; // Create structure to contain character information
     string game_option;
     bool repeat = true;
+    
     cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl; //// first display when it is start
     cout << "                  Deck Dungeon        " << endl;
     
@@ -30,7 +31,7 @@ int main(){
         cout << " 3. Exit" << endl;
         cout << "Your Option: " ;
         cin >> game_option;
-        if(game_option.length()>1){
+        if(game_option.length()>1){ // This is when the user has inpitted a wrong option.
             cout << "You can press only one key! Please trying again\n\n\n\n";
             continue;
         }
@@ -60,19 +61,17 @@ int main(){
         }
         
         cout << "Do you want to Save & Quit? (Y/N) ";
-        if(round ==5){
-            cout << "This is the last round if you don't save your data will be lost " << endl;
-        }
         cin >> saveindex;
         cout << endl;
         
         if(saveindex == 'Y'|| saveindex == 'y'){
-            save_f(user);
+            save_f(user); // save_f function store the information to be saved.
         }
         else{
                 cout << "Game goes on.." << endl;
         }
     }
+    
     cout << "End of Game" << endl;
     cout << "Game is terminated without being saved. Thank you!" << endl;;
     return 0;

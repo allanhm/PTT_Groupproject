@@ -8,21 +8,21 @@ using namespace std;
 void load_f(Players &user) {
     int index =0;
     ifstream fin;
-    string file = user.playername_v + ".txt";
+    string file = user.playername_v + ".txt"; // File according to the user's name.
     fin.open(file); // save hp, attack, defense , card, equipment, round
     
     if ( fin.fail() ) {
-		cout << "Error in file opening!" << endl;
+		cout << "Error in file opening!" << endl; // In case of error in file opening, display that there is a problem.
  		exit(1);
  	}
 
-    cout << "Character name: " << user.playername_v << endl;
+    cout << "Character name: " << user.playername_v << endl; // Check user name in the file.
     fin >> user.playerhp_v;
 
-    fin >> user.playerround_v;
+    fin >> user.playerround_v; // Check the round ended in the file.
     cout << "Current round: " << user.playerround_v << endl;
 
-    cout << "-----Player Status-----" << endl;
+    cout << "-----Player Status-----" << endl; // Check the player status stored  in the file.
     cout << "HP: " << user.playerhp_v << " / 50" << endl;
     fin >> user.playerattack_v;
     cout << "Damage: " <<  user.playerattack_v<< endl;
@@ -50,7 +50,7 @@ void load_f(Players &user) {
             index++;
         }
     }
-    cout << "weapon damage: " << current_weapon << " + " << endl;
+    cout << "weapon damage: " << current_weapon << endl;
     cout << "armor defense: " << current_armor << endl;
     cout << "potion: " << index << " bottle(s)"<< endl;
     cout << "-------------------"<< endl;

@@ -7,12 +7,7 @@
 #include <iostream>
 #include <vector>
 
-/*struct Item{
-    int weapon;
-    int armor;
-    int potion;
-};*/
-struct Players{ //Default value when new characgter is made
+struct Players{ //Structure to store player's information. The integer values written are the default level of the player.
     std::string playername_v;
     int playerhp_v = 50;
     int playerattack_v = 0;
@@ -23,9 +18,7 @@ struct Players{ //Default value when new characgter is made
 
 };
 
-
-
-struct Monster{
+struct Monster{ // Structure to store monster's information. The integer values written are the default level of the monster.
     std::string monstername_v;
     int monsterhp_v;
     int monsterattack_v;
