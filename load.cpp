@@ -32,11 +32,11 @@ void load_f(Players &user) {
     vector<int> current_potion;
     for(int i = 0; i <user.playerequipment_v.size(); i++){
         if(user.playerequipment_v[i]/100 == 1){
-            int weapon = user.playerequipment_v[i];
+            int weapon = user.playerequipment_v[i]%100;
             current_weapon += (weapon);
         }
         else if(user.playerequipment_v[i]/100 == 2){
-            int armor = user.playerequipment_v[i];
+            int armor = user.playerequipment_v[i]%200;
             current_armor += (armor);
         }
         else if(user.playerequipment_v[i]/100 == 3) {
@@ -44,8 +44,8 @@ void load_f(Players &user) {
             index++;
         }
     }
-    cout << "weapon:" << current_weapon << endl;
-    cout << "armor:" << current_armor << endl;
+    cout << "weapon damage: " << current_weapon << endl;
+    cout << "armor defense: " << current_armor << endl;
     cout << "potion: " << index << " bottle(s)"<< endl;
     cout << "-------------------"<< endl;
     fin.close();

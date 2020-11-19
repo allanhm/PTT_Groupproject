@@ -18,7 +18,7 @@ using namespace std;
 
 int main(){
     Players user; // Create structure to contain character information
-    int game_option;
+    string game_option;
     bool repeat = true;
     cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl; //// first display when it is start
     cout << "                  Deck Dungeon        " << endl;
@@ -29,21 +29,19 @@ int main(){
         cout << " 3. Exit" << endl;
         cout << "Your Option: " ;
         cin >> game_option;
-        repeat = profile_creation(int(game_option), user); // based on the option it will helps to create
+        if(game_option.length()>1){
+            cout << "You can press only one key! Please trying again\n\n\n\n";
+            continue;
+        }
+        char selection = game_option[0];
+        repeat = profile_creation(selection, user); // based on the option it will helps to create
         }                                                     // load file or terminate the game
 
     Monster enemy; // create a monster structure to use in the rest of the game.
     char saveindex; // bsed on the input
-    for(; user.playerround_v < 4; user.playerround_v++){
+    for(; user.playerround_v < 6; user.playerround_v++){
         int round = user.playerround_v;
-        cout << "Do you want to Save & Quit? (Y/N) ";
-        cin >> saveindex;
-        if(saveindex == 'Y'|| saveindex == 'y'){
-            save_f(user);
-        }
-        else{
-            cout << "Game goes on..";
-        }
+
         int playerdeck[21]; // creating a deck for each rounds
         int monsterdeck[21];
 
@@ -54,9 +52,28 @@ int main(){
         MonsterCreation_f(enemy,round); // monster is created for each round
         cout << enemy.monstername_v << " appeared!" << endl;
         Battle_f(user, enemy,round,playerdeck,monsterdeck);
-        ItemDisplay_f(round, user);
+
+        if(user.playerround_v<5){ // After Last round player cannot save the game.
+            ItemDisplay_f(round, user);
+        }
+        cout << "Do you want to Save & Quit? (Y/N) ";
+        cin >> saveindex;
+        if(saveindex == 'Y'|| saveindex == 'y'){
+            save_f(user);
+        }
+        else{
+            cout << "Game goes on..";
+        }
+
+
     }
     cout << "End of Game" << endl;
+    if(saveindex == 'Y'|| saveindex == 'y'){
+        save_f(user);
+    }
+    else{
+        cout << "Game is terminated without save Thank you!";
+    }
     return 0;
 
 

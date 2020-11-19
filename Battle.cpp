@@ -12,7 +12,7 @@ using namespace std;
 
 void CardDraw_f(int usercardhands[], int playerdeck[]);
 
-void Redraw_f(int hands[], int deck[], int userselectedcard_v1);
+void Redraw_f(int why[], int check[]);
 
 void Sort_f(int hands[]);
 void StatusAfterB_f(Players user, Monster mon);
@@ -66,11 +66,12 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             cout << endl;
             cout << "which one do want to you use?";
             cin >> item_option;
-            user.playerhp_v += current_potion[item_option - 1];
+            int option = item_option -1;
+            user.playerhp_v += current_potion[option];
                 for(int j =0 ; j < user.playerequipment_v.size();j++){
-                    if (current_potion[item_option - 1] == user.playerequipment_v[j] - 300 ){
-                        user.playerequipment_v.erase(user.playerequipment_v.begin() + item_option -1);
-                        current_potion.erase(current_potion.begin() + item_option -1);
+                    if (current_potion[option] == user.playerequipment_v[j] - 300 ){
+                        user.playerequipment_v.erase(user.playerequipment_v.begin() + option);
+                        current_potion.erase(current_potion.begin()+option);
                     }
                 }
                 if (user.playerhp_v >= 50) user.playerhp_v = 50;
@@ -146,8 +147,8 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         }
         Sort_f(user.playercard_v); // sort the player's card
         Sort_f(enemy.monstercard_v); // sort the monster's card
-        Redraw_f(user.playercard_v, userdeck, userselectedcard_v);
-        Redraw_f(enemy.monstercard_v, monsterdeck, monster_card_v);
+        Redraw_f(user.playercard_v, userdeck);
+        Redraw_f(enemy.monstercard_v, monsterdeck);
 
 
         // if card num = 0, comapre cout << you win or loose keepfight false ( Card is 0)

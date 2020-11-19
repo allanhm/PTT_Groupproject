@@ -18,12 +18,20 @@ void MonsterCreation_f( Monster &enemy, int round){
             enemy.monsterdefense_v = 1;
             break;
         case 2:
-            enemy.monsterattack_v = 10;
+            enemy.monsterattack_v = 8;
             enemy.monsterdefense_v = 3;
             break;
         case 3:
+            enemy.monsterattack_v = 12;
+            enemy.monsterdefense_v = 6;
+            break;
+        case 4:
             enemy.monsterattack_v = 15;
-            enemy.monsterdefense_v = 7;
+            enemy.monsterdefense_v = 9;
+            break;
+        case 5:
+            enemy.monsterattack_v = 17;
+            enemy.monsterdefense_v = 11;
             break;
     }
 }

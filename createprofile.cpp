@@ -7,11 +7,11 @@
 
 using namespace std;
 
-bool profile_creation(int button, Players &user) {
+bool profile_creation(char button, Players &user) {
     string name_; // character name
     bool check = true;
         switch(button){
-            case 1: // new character
+            case '1': // new character
                 while(true){
                     cout << "Create new profile" << endl;
                     cout << "Enter your name: ";
@@ -31,7 +31,7 @@ bool profile_creation(int button, Players &user) {
                     }
                 }
                 break;
-            case 2: // Load the file
+            case '2': // Load the file
                 while (true) {
                     cout << "Enter your name: " << endl;
                     cin >> name_;
@@ -52,14 +52,13 @@ bool profile_creation(int button, Players &user) {
                     }
                 }
                 break;
-            case 3:
+            case '3':
                 cout << "Bye Bye!" <<endl;
                 cout << "The game is terminated";
                 exit(1);
             default:
                 cout << "Choose again!"<< endl;
-                check = true;
-                break;
+                return check;
             }
         return check;
     }

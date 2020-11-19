@@ -8,7 +8,7 @@ using namespace std;
 void save_f(Players &user) {
     ofstream write;
     string filename = user.playername_v + ".txt";
-    write.open(filename); // save hp, attack, defense , card, equipment, round
+    write.open(filename,ios::out); // save hp, attack, defense , card, equipment, round
     write << user.playerhp_v << endl;
     write << user.playerround_v << endl;
     write << user.playerattack_v << endl;

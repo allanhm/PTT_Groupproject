@@ -5,6 +5,6 @@
 #include "characterinfo.h"
 using namespace std;
 
-bool profile_creation(int button,Players &users);
+bool profile_creation(char button,Players &users);
 
 #endif

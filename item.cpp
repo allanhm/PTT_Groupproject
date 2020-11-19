@@ -26,6 +26,16 @@ void ItemDisplay_f(int round, Players &user) {
             display.armor = rand()% 5 + 3;
             display.potion = rand() % 5 + 8;
             break;
+        case 3:
+            display.weapon = rand()% 7 + 8;
+            display.armor = rand()% 5 + 5;
+            display.potion = rand() % 5 + 10;
+            break;
+        case 4:
+            display.weapon = rand()% 7 + 9;
+            display.armor = rand()% 5 + 7;
+            display.potion = rand() % 5 + 11;
+            break;
     }
     cout << "Weapon:(w) ";
     cout << display.weapon<<endl;
