@@ -11,7 +11,7 @@ bool profile_creation(char button, Players &user) {
     string name_; // character name
     bool check = true;
         switch(button){
-            case '1': // new character
+            case '1': // When the user decides to create a new character
                 while(true){
                     cout << endl;
                     cout << "-----Create a new profile-----" << endl;
@@ -40,7 +40,7 @@ bool profile_creation(char button, Players &user) {
                 }
                 break;
                 
-            case '2': // Load the file
+            case '2': // When the user selects to use the previously created profile, load the data.
                 while (true) {
                     cout << "Enter your name: ";
                     cin >> name_;
