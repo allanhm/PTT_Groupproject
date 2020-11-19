@@ -50,7 +50,7 @@ int main(){
         fill_n(playerdeck, 21, 1);
         fill_n(monsterdeck, 21, 1);
 
-        cout << "Round "<< user.playerround_v <<  endl;
+        cout << "Welcome to Round "<< user.playerround_v <<  endl;
         MonsterCreation_f(enemy,round); // monster is created for each round
         cout << enemy.monstername_v << " appeared!" << endl;
         
