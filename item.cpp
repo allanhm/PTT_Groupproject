@@ -37,13 +37,14 @@ void ItemDisplay_f(int round, Players &user) {
             display.potion = rand() % 5 + 11;
             break;
     }
+    
     cout << "Weapon:(w) ";
     cout << display.weapon<<endl;
     cout << "Armor:(a) ";
     cout << display.armor<<endl;
     cout << "Potion:(p) ";
     cout << display.potion <<endl;
-    cout << "select an item" << endl;
+    cout << "Please select an item: ";
     cin >> useritem_v;
     switch(useritem_v){
         case 'w':
@@ -57,7 +58,6 @@ void ItemDisplay_f(int round, Players &user) {
         case 'p':
         case 'P':
             user.playerequipment_v.push_back(display.potion+300);
-
     }
 
 }
