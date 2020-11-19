@@ -70,6 +70,12 @@ int main(){
         
         else{
             cout << "-----Game goes on...-----" << endl;
+            cout << endl;
+            cout << "-----User Status-----" << endl;
+            cout << "HP: 50 / 50" << endl;
+            cout << "-----Monster Status-----" << endl;
+            cout << "HP: 50 / 50" << endl;
+            cout << endl;
         }
     }
     
