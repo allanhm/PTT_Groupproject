@@ -36,7 +36,7 @@ bool profile_creation(char button, Players &user) {
                 
             case '2': // Load the file
                 while (true) {
-                    cout << "Enter your name: " << endl;
+                    cout << "Enter your name: ";
                     cin >> name_;
                     string users = name_;
                     name_ += ".txt";
