@@ -74,12 +74,12 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
         StatusAFterBMonster_f(enemy);
 
-        cout << "-----Attack Phase-----" << endl;
+        cout << "-----Attack Phase-----" << endl << endl;
         cout << "remaining cards: ";
         for(int i = 0 ; i < 3 ; i++) {
             cout << user.playercard_v[i] << ' ';
         }
-        cout << endl;
+        cout << endl << endl;
         cout << user.playername_v << " please select a card to attack: ";
         int userselectedcard_v = 0;
         bool isonhands = false;
@@ -97,12 +97,12 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
                 }
             }
         }
-        cout << enemy.monstername_v << " has selected a card!" << endl;
+        cout << enemy.monstername_v << " has selected a card!\n\n";
 
 
         int z = rand() % 2 + 1; // random pick from monster
         int monster_card_v = enemy.monstercard_v[z];
-        cout << enemy.monstername_v << "'s card is " << monster_card_v << endl;
+        cout << enemy.monstername_v << "'s card is " << monster_card_v << endl << endl;
         cout << endl;
         
         for (int i = 0; i < 3; i++) { // take away the monster's card by assigning zero to the monster's hands. Same method as the user.
@@ -116,16 +116,16 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             cout << "-----You won!-----" << endl;
             damage = userselectedcard_v - enemy.monsterdefense_v+c_weapon;// calculates the damage
             if (damage <= 0) damage =0;
-            cout << damage << " damange to the monster!" << endl;
+            cout << damage << " damange to the monster!\n\n";
             cout << endl;
             enemy.monsterhp_v -= damage;
         }
 
         if (userselectedcard_v <= monster_card_v) { // monster wins
-            cout << "-----You lost!-----" << endl;
+            cout << "-----You lost!-----\n";
             damage = monster_card_v - (user.playerdefense_v+c_armor); // calculates the damage
             if (damage <= 0) damage =0;
-            cout << damage << " damange to you!" << endl;
+            cout << damage << " damange to you!\n";
             cout << endl;
             user.playerhp_v -= damage;
         }
@@ -133,11 +133,11 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
         // if either of the chcarters is down (which is hp < 0) cout << You or Monster loose keepfight => false
         if (user.playerhp_v <= 0) {
-            cout << "-----You lost!-----" << endl;
+            cout << "-----You lost!-----\n";
             keepfight_v = false;
         }
         else if(enemy.monsterhp_v <= 0){
-            cout << "-----You won!-----" << endl;
+            cout << "-----You won!-----\n";
             keepfight_v = false;
         }
 
@@ -155,11 +155,11 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
                 numof0_v++;
         }
         if (numof0_v==20 && user.playerhp_v > enemy.monsterhp_v) { // If all of the cards are assigned as 0(numof0_v==20), that means all the cards in the deck are used. After that process, compare the user and monster HP to decide who wins or loses.
-            cout << "-----You won!-----" << endl;
+            cout << "-----You won!-----\n";
             keepfight_v = false;
         }
         else if (numof0_v==20 && userselectedcard_v <= enemy.monstercard_v[z]) {
-            cout << "-----You lost!-----" << endl;
+            cout << "-----You lost!-----\n";
             keepfight_v = false;
         }
 
@@ -185,18 +185,20 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){ // This function assigns
 }
 
 void StatusAfterBPlyaer_f(int current_weapon, int current_armor,Players player){ // displays the current status of the user
-    cout << "-----User Status-----" << endl;
-    cout << "HP: " << player.playerhp_v << " / 50" << endl;
-    cout << "Damage: " <<  player.playerattack_v<< " + " << current_weapon<< endl;
-    cout << "Defense: " << player.playerdefense_v << " + " << current_armor << endl;
+    cout << "|-----User Status-----|" << endl;
+    cout << "| HP: " << player.playerhp_v << " / 50         |" << endl;
+    cout << "| Damage: " <<  player.playerattack_v<< " + " << current_weapon << "       |"<< endl;
+    cout << "| Defense: " << player.playerdefense_v << " + " << current_armor << "     |" << endl;
+    cout << "|---------------------|" << endl;
     cout << endl;
 }
 
 void StatusAFterBMonster_f(Monster mon){ // displays the current status of the monster
-    cout << "-----Monster Status-----" << endl;
-    cout << "HP: " << mon.monsterhp_v << " / 50" << endl;
-    cout << "Damage: " <<  mon.monsterattack_v << endl;
-    cout << "Defense: " << mon.monsterdefense_v << endl;
+    cout << "|-----Monster Status-----|" << endl;
+    cout << "|  HP: " << mon.monsterhp_v << " / 50" <<"           |"<< endl;
+    cout << "|  Damage: " <<  mon.monsterattack_v << "             |" <<endl;
+    cout << "|  Defense: " << mon.monsterdefense_v << "            |"<<endl;
+    cout << "|------------------------|" <<endl;
     cout << endl;
 
 }
