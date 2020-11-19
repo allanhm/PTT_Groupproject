@@ -31,7 +31,7 @@ int main(){
         cout << " 3. Exit" << endl;
         cout << "Your Option: " ;
         cin >> game_option;
-        if(game_option.length()>1){
+        if(game_option.length()>1){ // This is when the user has inpitted a wrong option.
             cout << "You can press only one key! Please trying again\n\n\n\n";
             continue;
         }
@@ -65,11 +65,11 @@ int main(){
         cout << endl;
         
         if(saveindex == 'Y'|| saveindex == 'y'){
-            save_f(user);
+            save_f(user); // save_f function store the information to be saved.
         }
         else{
                 cout << "Game goes on.." << endl;
-                StatusAfterBPlyaer_f(user);
+                StatusAfterBPlyaer_f(user); // This shows the status from the point when the user has previously quit the game.
         }
     }
     
@@ -79,8 +79,8 @@ int main(){
         save_f(user);
     }
     
-    else{
+    else{ // When the user wants to end the game without saving the information. 
         cout << "Game is terminated without being saved. Thank you!" << endl;;
-    }
+    } 
     return 0;
 }
