@@ -18,12 +18,13 @@ int main(){
     string game_option;
     bool repeat = true;
     
-    cout << "|---------COMP2113/ENGG1340 Group-80 Project---------|" << endl; //// first display when it is start
-    cout << "|                 Deck Dungeon                       |" << endl;
-    cout << "|                                                    |" << endl;
-    while(repeat){  //in case of pressing wrong key
-        cout << "|        Please choose optoins below                 |" << endl;
-        cout << "|        1. Create Profile                           |"<< endl;
+
+
+
+    while(repeat){
+        cout << "|---------COMP2113/ENGG1340 Group-80 Project---------|" << endl; //// first display when it is start   //in case of pressing wrong key
+        cout << "|                 Deck Dungeon                       |" << endl;                                       cout << "|        Please choose optoins below                 |" << endl;
+        cout << "|                                                    |" << endl;                                       cout << "|        1. Create Profile                           |"<< endl;
         cout << "|        2. Load Profile                             |"<< endl;
         cout << "|        3. Exit                                     |"<< endl;
         cout << "|----------------------------------------------------|" << endl;
