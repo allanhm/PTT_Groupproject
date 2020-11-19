@@ -12,7 +12,7 @@ using namespace std;
 
 void CardDraw_f(int usercardhands[], int playerdeck[]);
 
-void Redraw_f(int hands[], int deck[]);
+void Redraw_f(int hands[], int deck[], int userselectedcard_v1);
 
 void Sort_f(int hands[]);
 void StatusAfterB_f(Players user, Monster mon);
@@ -146,8 +146,8 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         }
         Sort_f(user.playercard_v); // sort the player's card
         Sort_f(enemy.monstercard_v); // sort the monster's card
-        Redraw_f(user.playercard_v, userdeck);
-        Redraw_f(enemy.monstercard_v, monsterdeck);
+        Redraw_f(user.playercard_v, userdeck, userselectedcard_v);
+        Redraw_f(enemy.monstercard_v, monsterdeck, monster_card_v);
 
 
         // if card num = 0, comapre cout << you win or loose keepfight false ( Card is 0)
@@ -204,23 +204,23 @@ void StatusAfterB_f(Players user, Monster mon){
 
 }
 
-void Redraw_f(int why[], int check[]) {
-    random_device rd; //random_device for seed value
-    minstd_rand gen(rd());
-    uniform_int_distribution<int> dis(1, 20);
+void Redraw_f(int why[], int check[], int userselectedcard_v1) {
     bool isoverlapped = true;
-
+  
     while (isoverlapped) {
+        random_device rd;
+        minstd_rand gen(rd());
+        uniform_int_distribution<int> dis(1, 20);
         int redraw = dis(gen);
         int i = 1;
-        if (check[redraw] == i) {
+        if (check[redraw] == i && redraw != why[1] && redraw != why[1] && redraw != userselectedcard_v1) {
             why[0] = redraw;
             check[redraw] = 0;
             isoverlapped = false;
         }
     }
-
 }
+
 
 void Sort_f(int hands[]){
     int i , j, temp;
