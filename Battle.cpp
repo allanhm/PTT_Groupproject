@@ -34,7 +34,6 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
             current_potion.push_back(potion);
         }
     }
-    cout << "Welcome to round: " << user.playerround_v << endl; // round notification
 
     CardDraw_f(user.playercard_v,userdeck); // player draws 3 cards
     CardDraw_f(enemy.monstercard_v,monsterdeck); //monster draw 3 cards
@@ -44,17 +43,12 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         cout << user.playercard_v[i] << ' ';
     }
     cout << endl;
-
     cout << enemy.monstername_v << " drew 3 cards"<< endl; // display monser's card
-    for(int i = 0 ; i < 3 ; i++) {
-        cout << enemy.monstercard_v[i] << ' ';
-    }
     cout << endl;
-
 
     bool keepfight_v = true;
     while(keepfight_v) {
-        cout <<"Item Phase" << endl;
+        cout <<"-----Item Phase-----" << endl;
         if(current_potion.size() ==0 ){
             cout<< "There is no potion you can use" <<endl<<endl;
         }
@@ -80,7 +74,7 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
 
 
 
-        cout << "Attack Phase" << endl;
+        cout << "-----Attack Phase-----" << endl;
         cout << "remaining cards: ";
         for(int i = 0 ; i < 3 ; i++) {
             cout << user.playercard_v[i] << ' ';
@@ -99,19 +93,18 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
                     break;
                 }
                 if (i == 2) {
-                    cout << "You picked the wrong number please pick again" << endl;
+                    cout << "You picked the wrong number please pick again: ";
                 }
             }
         }
         cout << enemy.monstername_v << " has selected a card!" << endl;
-
         cout << enemy.monstercard_v[0] << " " << enemy.monstercard_v[1] << " " << enemy.monstercard_v[2] << endl;
-
-
 
         int z = rand() % 2 + 1; // random pick from monster
         int monster_card_v = enemy.monstercard_v[z];
         cout << enemy.monstername_v << "'s card is " << monster_card_v << endl;
+        cout << endl;
+        
         for (int i = 0; i < 3; i++) { // take away the monster's card
             if (enemy.monstercard_v[i] == monster_card_v)
                 enemy.monstercard_v[i] = 0;
@@ -120,29 +113,31 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
         int damage;
         // --------------------Comparing damage
         if (userselectedcard_v > monster_card_v) { //user wins
-            cout << "You won!" << endl;
+            cout << "-----You won!-----" << endl;
             damage = userselectedcard_v - enemy.monsterdefense_v+current_weapon;
             if (damage <= 0) damage =0;
             cout << damage << " damange to the monster!" << endl;
+            cout << endl;
             enemy.monsterhp_v -= damage;
         }
 
         if (userselectedcard_v <= monster_card_v) { // monster wins
-            cout << "You lost!" << endl;
+            cout << "-----You lost!-----" << endl;
             damage = monster_card_v - (user.playerdefense_v+current_armor);
             if (damage <= 0) damage =0;
             cout << damage << " damange to you!" << endl;
+            cout << endl;
             user.playerhp_v -= damage;
         }
         StatusAfterB_f(user, enemy);
 
         // if either of the chcarters is down (which is hp < 0) cout << You or Monster loose keepfight => false
         if (user.playerhp_v <= 0) {
-            cout << "You lost!" << endl;
+            cout << "-----You lost!-----" << endl;
             keepfight_v = false;
         }
         else if(enemy.monsterhp_v <= 0){
-            cout << "You won!" << endl;
+            cout << "-----You won!-----" << endl;
             keepfight_v = false;
         }
         Sort_f(user.playercard_v); // sort the player's card
@@ -158,11 +153,11 @@ void Battle_f(Players &user, Monster &enemy, int round, int userdeck[], int mons
                 numof0_v++;
         }
         if (numof0_v==20 && user.playerhp_v > enemy.monsterhp_v) { // 모든 댁의 카드가 0이면 numof0_v=20
-            cout << "You won!" << endl;
+            cout << "-----You won!-----" << endl;
             keepfight_v = false;
         }
         else if (numof0_v==20 && userselectedcard_v <= enemy.monstercard_v[z]) {
-            cout << "You lost!" << endl;
+            cout << "-----You lost!-----" << endl;
             keepfight_v = false;
         }
 
@@ -190,15 +185,16 @@ void CardDraw_f(int usercardhands[], int playerdeck[]){
 }
 
 void StatusAfterB_f(Players user, Monster mon){
-    cout << "——Monster Status——" << endl;
+    cout << "-----Monster Status-----" << endl;
     cout << "HP: " << mon.monsterhp_v << " / 50" << endl;
     cout << "Damage: " <<  mon.monsterattack_v << endl;
     cout << "Defense: " << mon.monsterdefense_v << endl;
-    cout << "——User Status——" << endl;
+    cout << endl;
+    cout << "-----User Status-----" << endl;
     cout << "HP: " << user.playerhp_v << " / 50" << endl;
     cout << "Damage: " <<  user.playerattack_v<< endl;
     cout << "Defense: " << user.playerdefense_v << endl;
-
+    cout << endl;
 }
 
 void Redraw_f(int why[], int check[]) {
