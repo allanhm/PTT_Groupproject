@@ -10,6 +10,12 @@ void load_f(Players &user) {
     ifstream fin;
     string file = user.playername_v + ".txt";
     fin.open(file); // save hp, attack, defense , card, equipment, round
+    
+    if ( fin.fail() ) {
+		cout << "Error in file opening!" << endl;
+ 		exit(1);
+ 	}
+
     cout << "Character name: " << user.playername_v << endl;
     fin >> user.playerhp_v;
 
