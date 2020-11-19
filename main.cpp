@@ -36,7 +36,7 @@ int main(){
     char saveindex; // bsed on the input
     for(; user.playerround_v < 4; user.playerround_v++){
         int round = user.playerround_v;
-        cout << "Do you want to Save & Quit? (Y/N)";
+        cout << "Do you want to Save & Quit? (Y/N) ";
         cin >> saveindex;
         if(saveindex == 'Y'|| saveindex == 'y'){
             save_f(user);
