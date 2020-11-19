@@ -62,13 +62,14 @@ int main(){
         
         cout << "Do you want to Save & Quit? (Y/N) ";
         cin >> saveindex;
+        cout << endl;
         
         if(saveindex == 'Y'|| saveindex == 'y'){
             save_f(user);
         }
         
         else{
-            cout << "Game goes on..." << endl;
+            cout << "-----Game goes on...-----" << endl;
         }
     }
     
