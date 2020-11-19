@@ -12,7 +12,7 @@ using namespace std;
 
 void CardDraw_f(int usercardhands[], int playerdeck[]); // declaration of the function
 
-void Redraw_f(int why[], int check[]); // declaration of the function
+void Redraw_f(int playerhand[], int playerdeck[]); // declaration of the function
 
 void Sort_f(int hands[]);  // declaration of the function
 
@@ -201,7 +201,7 @@ void StatusAFterBMonster_f(Monster mon){ // displays the current status of the m
 
 }
 
-void Redraw_f(int why[], int check[]) {
+void Redraw_f(int playerhand[], int playerdeck[]) {
     bool isoverlapped = true;
     random_device rd;
   
@@ -210,9 +210,9 @@ void Redraw_f(int why[], int check[]) {
         uniform_int_distribution<int> dis(1, 20);
         int redraw = dis(gen);
         int i = 1;
-        if (check[redraw] == i){ // if the randomly generated card is not equal to the card that the user has previously picked, it assigns the card to the user's deck. Same for the monster.
-            why[0] = redraw;
-            check[redraw] = 0;
+        if (playerdeck[redraw] == i){ // if the randomly generated card is not equal to the card that the user has previously picked, it assigns the card to the user's deck. Same for the monster.
+            playerhand[0] = redraw;
+            playerdeck[redraw] = 0;
             isoverlapped = false;
             }
         else isoverlapped =true; // After the card is assigned it exits the loop, otherwise return back to the loop, until a non-repeated card is assigned.
