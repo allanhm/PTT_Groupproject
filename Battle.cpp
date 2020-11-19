@@ -206,9 +206,9 @@ void StatusAfterB_f(Players user, Monster mon){
 
 void Redraw_f(int why[], int check[], int userselectedcard_v1) {
     bool isoverlapped = true;
+    random_device rd;
   
     while (isoverlapped) {
-        random_device rd;
         minstd_rand gen(rd());
         uniform_int_distribution<int> dis(1, 20);
         int redraw = dis(gen);
