@@ -20,8 +20,10 @@ int main(){
     Players user; // Create structure to contain character information
     string game_option;
     bool repeat = true;
+    
     cout << "        COMP2113/ENGG1340 Group-80 Project        " << endl; //// first display when it is start
     cout << "                  Deck Dungeon        " << endl;
+    
     while(repeat){  //in case of pressing wrong key
         cout << "        Please choose optoins below        " << endl;
         cout << " 1. Create Profile" << endl;
@@ -33,6 +35,7 @@ int main(){
             cout << "You can press only one key! Please trying again\n\n\n\n";
             continue;
         }
+        
         char selection = game_option[0];
         repeat = profile_creation(selection, user); // based on the option it will helps to create
         }                                                     // load file or terminate the game
@@ -41,7 +44,6 @@ int main(){
     char saveindex; // bsed on the input
     for(; user.playerround_v < 6; user.playerround_v++){
         int round = user.playerround_v;
-
         int playerdeck[21]; // creating a deck for each rounds
         int monsterdeck[21];
 
@@ -51,34 +53,33 @@ int main(){
         cout << "Round"<< user.playerround_v <<  endl;
         MonsterCreation_f(enemy,round); // monster is created for each round
         cout << enemy.monstername_v << " appeared!" << endl;
+        
         Battle_f(user, enemy,round,playerdeck,monsterdeck);
 
         if(user.playerround_v<5){ // After Last round player cannot save the game.
             ItemDisplay_f(round, user);
         }
+        
         cout << "Do you want to Save & Quit? (Y/N) ";
         cin >> saveindex;
+        
         if(saveindex == 'Y'|| saveindex == 'y'){
             save_f(user);
         }
+        
         else{
-            cout << "Game goes on..";
+            cout << "Game goes on..." << endl;
         }
-
-
     }
+    
     cout << "End of Game" << endl;
+    
     if(saveindex == 'Y'|| saveindex == 'y'){
         save_f(user);
     }
+    
     else{
-        cout << "Game is terminated without save Thank you!";
+        cout << "Game is terminated without being saved. Thank you!" << endl;;
     }
     return 0;
-
-
-
-
-
-
 }
